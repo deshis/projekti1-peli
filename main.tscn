@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxevy65lkhibv"]
+
+[ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
+[ext_resource type="PackedScene" uid="uid://cbp1aedhpdugo" path="res://enemy_projectile.tscn" id="2_heipv"]
+[ext_resource type="PackedScene" uid="uid://kwnhyg72qcxf" path="res://hud.tscn" id="3_chuea"]
+
+[node name="Main" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_66f0x")]
+collision_mask = 2
+
+[node name="EnemyProjectile" parent="." instance=ExtResource("2_heipv")]
+position = Vector2(771, 281)
+collision_layer = 2
+
+[node name="EnemyProjectile2" parent="." instance=ExtResource("2_heipv")]
+position = Vector2(442, 278)
+collision_layer = 2
+
+[node name="EnemyProjectile3" parent="." instance=ExtResource("2_heipv")]
+position = Vector2(663, 417)
+collision_layer = 2
+
+[node name="HUD" parent="." instance=ExtResource("3_chuea")]
+
+[connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]

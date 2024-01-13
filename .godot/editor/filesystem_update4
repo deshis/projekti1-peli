@@ -1,0 +1,8 @@
+res://player.tscn
+res://movement.gd
+res://player.gd
+res://enemy_projectile.tscn
+res://enemy_projectile.gd
+res://main.tscn
+res://hud.tscn
+res://hud.gd

@@ -1,0 +1,13 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1705149378
+ball.png::CompressedTexture2D::1830593777888842778::1701796126::1701796126::1::::<><>::
+enemy_projectile.gd::GDScript::-1::1701801821::0::1::::<>RigidBody2D<>::
+enemy_projectile.tscn::PackedScene::4875574734213107282::1701801886::0::1::::<><>::res://enemy_projectile.gd<>uid://1c0u2s0qkyri::::res://ball.png
+green.png::CompressedTexture2D::8635393265045157573::1701800999::1701800999::1::::<><>::
+hud.gd::GDScript::-1::1701801897::0::1::::<>CanvasLayer<>::
+hud.tscn::PackedScene::748107839752813771::1701801897::0::1::::<><>::res://hud.gd
+icon.svg::CompressedTexture2D::6742090606672536380::1701791833::1701791838::1::::<><>::
+main.tscn::PackedScene::8783182556753524751::1701802254::0::1::::<><>::uid://dxta58xb1b3wk::::res://player.tscn<>uid://cbp1aedhpdugo::::res://enemy_projectile.tscn<>uid://kwnhyg72qcxf::::res://hud.tscn
+player.gd::GDScript::-1::1701801941::0::1::::<>Area2D<>::
+player.tscn::PackedScene::8812883974779639534::1701801886::0::1::::<><>::uid://c3b6in3ku53gq::::res://icon.svg<>res://player.gd
+red.png::CompressedTexture2D::7227534157131111891::1701800999::1701800999::1::::<><>::

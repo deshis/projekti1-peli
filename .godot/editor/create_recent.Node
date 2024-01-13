@@ -1,0 +1,10 @@
+RichTextLabel
+TextEdit
+TextureProgressBar
+CanvasLayer
+Area2D
+Node
+RigidBody2D
+VisibleOnScreenNotifier2D
+CollisionShape2D
+AnimatedSprite2D
