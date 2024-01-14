@@ -25,6 +25,8 @@ collision_mask = 2
 [node name="PlayerProjectileSpawner" type="Node2D" parent="Player"]
 show_behind_parent = true
 script = ExtResource("4_nfyyp")
+crosshair_speed = null
+crosshair_distance = null
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="Player/PlayerProjectileSpawner"]
 show_behind_parent = true
