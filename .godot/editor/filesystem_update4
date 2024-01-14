@@ -2,3 +2,7 @@ res://main.tscn
 res://player.gd
 res://Crosshair.gd
 res://PlayerProjectileSpawner.gd
+res://hud.gd
+res://TimerBar.gd
+res://SwitchTimer.gd
+res://HealthBar.gd

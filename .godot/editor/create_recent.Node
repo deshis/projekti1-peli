@@ -1,3 +1,8 @@
+ProgressBar
+Line2D
+Label
+Timer
+Camera2D
 Node2D
 AnimatedSprite2D
 RichTextLabel
@@ -7,5 +12,3 @@ CanvasLayer
 Area2D
 Node
 RigidBody2D
-VisibleOnScreenNotifier2D
-CollisionShape2D
