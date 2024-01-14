@@ -1,13 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=7 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
+[ext_resource type="Script" path="res://Crosshair.gd" id="2_byn30"]
 [ext_resource type="PackedScene" uid="uid://cbp1aedhpdugo" path="res://enemy_projectile.tscn" id="2_heipv"]
+[ext_resource type="Texture2D" uid="uid://d1c5t3ww2nv74" path="res://sprites/crosshair.png" id="2_ysv7l"]
 [ext_resource type="PackedScene" uid="uid://kwnhyg72qcxf" path="res://hud.tscn" id="3_chuea"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t3eif"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ysv7l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_66f0x")]
 collision_mask = 2
+
+[node name="Crosshair" type="AnimatedSprite2D" parent="Player"]
+show_behind_parent = true
+sprite_frames = SubResource("SpriteFrames_t3eif")
+script = ExtResource("2_byn30")
 
 [node name="EnemyProjectile" parent="." instance=ExtResource("2_heipv")]
 position = Vector2(771, 281)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbp1aedhpdugo"]
 
 [ext_resource type="Script" path="res://enemy_projectile.gd" id="1_8emh5"]
-[ext_resource type="Texture2D" uid="uid://1c0u2s0qkyri" path="res://ball.png" id="1_uhn1r"]
+[ext_resource type="Texture2D" uid="uid://1c0u2s0qkyri" path="res://sprites/ball.png" id="1_uhn1r"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vmpy2"]
 animations = [{
