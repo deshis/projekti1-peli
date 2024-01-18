@@ -105,5 +105,5 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_nasut")
 show_percentage = false
 script = ExtResource("7_tkodr")
 
-[connection signal="timeout" from="SwitchTimer" to="Player" method="_on_switch_timer_timeout"]
+[connection signal="timeout" from="SwitchTimer" to="Player/PlayerProjectileSpawner" method="_on_switch_timer_timeout"]
 [connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]

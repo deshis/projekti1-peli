@@ -5,14 +5,12 @@ signal PlayerHit
 @export var maxHealth = 100
 @export var currentHealth = 80
 
-
 @onready var healthbar = get_node("/root/Main/HUD/HealthBar")
-var screen_size
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	screen_size = get_viewport_rect().size
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -25,8 +23,7 @@ func _process(delta):
 			velocity=velocity.normalized() #stop character from moving faster diagonally
 		velocity = velocity * moveSpeed
 	position += velocity * delta #change character position
-	position = position.clamp(Vector2.ZERO, screen_size) #prevent character from moving off screen
-
+	
 func _on_body_entered(body):
 	#if collide with projectile, take damage and delete projectile. 
 	if body.get_collision_layer()==2:
@@ -52,8 +49,3 @@ func get_max_health():
 
 func update_health_ui():
 	healthbar.update_health()
-
-
-#switch firing mode
-func _on_switch_timer_timeout():
-	print("Switch!")
