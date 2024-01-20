@@ -1,7 +1,8 @@
+Node
+Timer
 ProgressBar
 Line2D
 Label
-Timer
 Camera2D
 Node2D
 AnimatedSprite2D
@@ -10,5 +11,4 @@ TextEdit
 TextureProgressBar
 CanvasLayer
 Area2D
-Node
 RigidBody2D

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=14 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
 [ext_resource type="PackedScene" uid="uid://cbp1aedhpdugo" path="res://enemy_projectile.tscn" id="2_heipv"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://PlayerProjectileSpawner.gd" id="4_nfyyp"]
 [ext_resource type="Script" path="res://TimerBar.gd" id="6_07ov0"]
 [ext_resource type="Script" path="res://HealthBar.gd" id="7_tkodr"]
-[ext_resource type="Script" path="res://ModeGenerator.gd" id="8_lgtmv"]
 
 [sub_resource type="GDScript" id="GDScript_h37l6"]
 script/source = "extends Timer
@@ -65,7 +64,6 @@ show_behind_parent = true
 sprite_frames = SubResource("SpriteFrames_t3eif")
 
 [node name="ShootTimer" type="Timer" parent="Player/PlayerProjectileSpawner"]
-one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
@@ -108,9 +106,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_c2uvn")
 theme_override_styles/fill = SubResource("StyleBoxFlat_nasut")
 show_percentage = false
 script = ExtResource("7_tkodr")
-
-[node name="ModeGenerator" type="Node" parent="."]
-script = ExtResource("8_lgtmv")
 
 [connection signal="timeout" from="SwitchTimer" to="Player/PlayerProjectileSpawner" method="_on_switch_timer_timeout"]
 [connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]

@@ -1,3 +1,4 @@
 res://main.tscn
-res://player.gd
 res://PlayerProjectileSpawner.gd
+res://ModeGenerator.gd
+res://player.gd
