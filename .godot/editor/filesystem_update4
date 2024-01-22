@@ -1,8 +1,4 @@
 res://main.tscn
-res://ModeGenerator.gd
 res://PlayerProjectileSpawner.gd
-res://player_projectile.tscn
-res://player_projectile.gd
+res://ModeGenerator.gd
 res://player.tscn
-res://player.gd
-res://enemy_projectile.tscn

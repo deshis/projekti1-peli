@@ -11,11 +11,14 @@ var aiming = true
 var canShoot = true
 var aimDirection = Vector2.ZERO
 @onready var shootTimer = get_node("ShootTimer")
+@onready var delayedShotTimer = get_node("ShootTimer")
 @onready var switchTimer = get_node("/root/Main/SwitchTimer")
 
 @onready var modeGenerator = get_node("/root/Main/ModeGenerator")
 
 var projectile = preload("res://player_projectile.tscn")
+
+var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,19 +55,26 @@ func _shoot():
 		match type: 
 			"single":
 				_spawn_projectile(aimDirection,damage,speed,size)
-				shootTimer.start(firerate)
 			"triple":
-				pass
+				_spawn_projectile(aimDirection,damage,speed,size)
+				_spawn_projectile(aimDirection.rotated(deg_to_rad(7.5)),damage,speed,size)
+				_spawn_projectile(aimDirection.rotated(deg_to_rad(-7.5)),damage,speed,size)
 			"blast":
+				for i in rng.randi_range(4,8):
+					_spawn_projectile(aimDirection.rotated(deg_to_rad(rng.randfn(0,5))),damage,speed*rng.randf_range(0.9,1.1),size*rng.randf_range(0.9,1.1))
+			"circle":
+				var circleAmount=32.0
+				for i in circleAmount:
+					_spawn_projectile(aimDirection.rotated(deg_to_rad(360/circleAmount*i)),damage,speed,size)
+			"burst":
+				_burst(aimDirection,damage,speed,size)
+			"spray":
+				_spray(aimDirection,damage,speed,size)
+			"laser":
 				pass
 			"beam":
 				pass
-			"circle":
-				pass
-			"burst":
-				pass
-			"spray":
-				pass
+		shootTimer.start(firerate)
 		canShoot=false
 
 func _spawn_projectile(direction,damage,speed,size):
@@ -76,6 +86,16 @@ func _spawn_projectile(direction,damage,speed,size):
 	instance.get_node("CollisionShape2D").set_scale(Vector2(size, size))
 	get_tree().current_scene.add_child(instance)
 
+func _burst(direction,damage,speed,size):
+	for i in 4:
+		_spawn_projectile(direction,damage,speed,size)
+		await get_tree().create_timer(0.05).timeout
+
+func _spray(direction,damage,speed,size):
+	for i in 5:
+		_spawn_projectile(direction.rotated(deg_to_rad(-20+10*i)),damage,speed,size)
+		await get_tree().create_timer(0.05).timeout
+
 #switch firing mode
 func _on_switch_timer_timeout():
 	if(currentFiringMode<firingModes.size()-1):
@@ -86,3 +106,7 @@ func _on_switch_timer_timeout():
 #when shooting cooldown ends
 func _on_shoot_timer_timeout():
 	canShoot=true
+
+#delayed shot timer for burst and spray firing modes
+func _on_delayed_shot_timer_timeout():
+	pass
