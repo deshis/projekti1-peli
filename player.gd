@@ -8,6 +8,9 @@ signal PlayerHit
 @onready var healthbar = get_node("/root/Main/HUD/HealthBar")
 
 
+#TODO iframes and sprint/dash
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -25,7 +28,8 @@ func _process(delta):
 	position += velocity * delta #change character position
 	
 func _on_body_entered(body):
-	#if collide with projectile, take damage and delete projectile. 
+	print("Entered body...")
+	#if collide with enemyprojectile on layer 2, take damage and delete projectile. 
 	if body.get_collision_layer()==2:
 		_take_damage(body.get_damage())
 		body.queue_free()
@@ -49,3 +53,5 @@ func get_max_health():
 
 func update_health_ui():
 	healthbar.update_health()
+	
+	

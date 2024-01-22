@@ -1,3 +1,4 @@
+RigidBody2D
 Node
 Timer
 ProgressBar
@@ -11,4 +12,3 @@ TextEdit
 TextureProgressBar
 CanvasLayer
 Area2D
-RigidBody2D

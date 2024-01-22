@@ -11,13 +11,15 @@ var aiming = true
 var canShoot = true
 var aimDirection = Vector2.ZERO
 @onready var shootTimer = get_node("ShootTimer")
-
+@onready var switchTimer = get_node("/root/Main/SwitchTimer")
 
 @onready var modeGenerator = get_node("/root/Main/ModeGenerator")
 
+var projectile = preload("res://player_projectile.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	switchTimer.timeout.connect(_on_switch_timer_timeout)
 	
 	#initialize random array of firing modes, for testing purposes
 	for i in maxModeAmount:
@@ -33,7 +35,8 @@ func _process(delta):
 	if(aimDirection.length()==0):
 		crosshair.set_position(Vector2(0, 0)) #if not aiming, the crosshair is hidden under the player
 	else:
-		crosshair.set_position(aimDirection.normalized() * delta * crosshairDistance)  #change crosshair position
+		aimDirection=aimDirection.normalized()
+		crosshair.set_position(aimDirection * delta * crosshairDistance)  #change crosshair position
 		_shoot()
 
 
@@ -44,23 +47,34 @@ func _shoot():
 	var size = firingModes[currentFiringMode][3]
 	var speed = firingModes[currentFiringMode][4]
 	
+	
 	if(canShoot):
 		match type: 
-			#firing modes here
 			"single":
-				print("single shooting")
+				_spawn_projectile(aimDirection,damage,speed,size)
+				shootTimer.start(firerate)
 			"triple":
-				print("triple shooting")
+				pass
 			"blast":
-				print("blast shooting")
+				pass
 			"beam":
-				print("beam shooting")
+				pass
 			"circle":
-				print("circle shooting")
-		shootTimer.start(firerate)
+				pass
+			"burst":
+				pass
+			"spray":
+				pass
 		canShoot=false
-		print("timer set for "+str(firerate))
 
+func _spawn_projectile(direction,damage,speed,size):
+	var instance = projectile.instantiate()
+	instance.position=global_position
+	instance.set_damage(damage)
+	instance.set_linear_velocity(direction*speed)
+	instance.get_node("AnimatedSprite2D").set_scale(Vector2(size, size))
+	instance.get_node("CollisionShape2D").set_scale(Vector2(size, size))
+	get_tree().current_scene.add_child(instance)
 
 #switch firing mode
 func _on_switch_timer_timeout():

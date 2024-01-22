@@ -1,10 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=12 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
 [ext_resource type="PackedScene" uid="uid://cbp1aedhpdugo" path="res://enemy_projectile.tscn" id="2_heipv"]
-[ext_resource type="Texture2D" uid="uid://d1c5t3ww2nv74" path="res://sprites/crosshair.png" id="2_ysv7l"]
 [ext_resource type="PackedScene" uid="uid://kwnhyg72qcxf" path="res://hud.tscn" id="3_chuea"]
-[ext_resource type="Script" path="res://PlayerProjectileSpawner.gd" id="4_nfyyp"]
 [ext_resource type="Script" path="res://TimerBar.gd" id="6_07ov0"]
 [ext_resource type="Script" path="res://HealthBar.gd" id="7_tkodr"]
 [ext_resource type="Script" path="res://ModeGenerator.gd" id="8_lgtmv"]
@@ -22,17 +20,6 @@ func _ready():
 func _process(_delta):
 	pass
 "
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_t3eif"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_ysv7l")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb0wd"]
 bg_color = Color(0.188235, 0.184314, 0.176471, 1)
@@ -52,36 +39,6 @@ bg_color = Color(1, 0, 0, 1)
 wait_time = 5.0
 autostart = true
 script = SubResource("GDScript_h37l6")
-
-[node name="Player" parent="." instance=ExtResource("1_66f0x")]
-collision_mask = 2
-
-[node name="PlayerProjectileSpawner" type="Node2D" parent="Player"]
-show_behind_parent = true
-script = ExtResource("4_nfyyp")
-
-[node name="Crosshair" type="AnimatedSprite2D" parent="Player/PlayerProjectileSpawner"]
-show_behind_parent = true
-sprite_frames = SubResource("SpriteFrames_t3eif")
-
-[node name="ShootTimer" type="Timer" parent="Player/PlayerProjectileSpawner"]
-one_shot = true
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-
-[node name="EnemyProjectile" parent="." instance=ExtResource("2_heipv")]
-position = Vector2(771, 281)
-collision_layer = 2
-
-[node name="EnemyProjectile2" parent="." instance=ExtResource("2_heipv")]
-position = Vector2(442, 278)
-collision_layer = 2
-
-[node name="EnemyProjectile3" parent="." instance=ExtResource("2_heipv")]
-position = Vector2(663, 417)
-collision_layer = 2
 
 [node name="HUD" parent="." instance=ExtResource("3_chuea")]
 script = null
@@ -112,6 +69,6 @@ script = ExtResource("7_tkodr")
 [node name="ModeGenerator" type="Node" parent="."]
 script = ExtResource("8_lgtmv")
 
-[connection signal="timeout" from="SwitchTimer" to="Player/PlayerProjectileSpawner" method="_on_switch_timer_timeout"]
-[connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]
-[connection signal="timeout" from="Player/PlayerProjectileSpawner/ShootTimer" to="Player/PlayerProjectileSpawner" method="_on_shoot_timer_timeout"]
+[node name="EnemyProjectile" parent="." instance=ExtResource("2_heipv")]
+
+[node name="Player" parent="." instance=ExtResource("1_66f0x")]

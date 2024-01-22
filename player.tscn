@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxta58xb1b3wk"]
+[gd_scene load_steps=8 format=3 uid="uid://dxta58xb1b3wk"]
 
 [ext_resource type="Texture2D" uid="uid://c3b6in3ku53gq" path="res://sprites/icon.svg" id="1_omept"]
 [ext_resource type="Script" path="res://player.gd" id="1_xpekm"]
+[ext_resource type="Script" path="res://PlayerProjectileSpawner.gd" id="3_w0cgv"]
+[ext_resource type="Texture2D" uid="uid://d1c5t3ww2nv74" path="res://sprites/crosshair.png" id="4_kt8dq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p3ylv"]
 animations = [{
@@ -17,9 +19,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4khy4"]
 size = Vector2(50, 50)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_5yq2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kt8dq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_xpekm")
-speed = 500
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -28,3 +41,21 @@ sprite_frames = SubResource("SpriteFrames_p3ylv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4khy4")
+
+[node name="PlayerProjectileSpawner" type="Node2D" parent="."]
+show_behind_parent = true
+script = ExtResource("3_w0cgv")
+
+[node name="Crosshair" type="AnimatedSprite2D" parent="PlayerProjectileSpawner"]
+show_behind_parent = true
+sprite_frames = SubResource("SpriteFrames_5yq2f")
+
+[node name="ShootTimer" type="Timer" parent="PlayerProjectileSpawner"]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="PlayerProjectileSpawner/ShootTimer" to="PlayerProjectileSpawner" method="_on_shoot_timer_timeout"]
