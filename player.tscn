@@ -53,6 +53,10 @@ sprite_frames = SubResource("SpriteFrames_5yq2f")
 [node name="ShootTimer" type="Timer" parent="PlayerProjectileSpawner"]
 one_shot = true
 
+[node name="LaserRayCaster" type="RayCast2D" parent="PlayerProjectileSpawner"]
+collision_mask = 16
+hit_from_inside = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0

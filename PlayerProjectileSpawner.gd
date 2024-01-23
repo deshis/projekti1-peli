@@ -10,13 +10,15 @@ var currentFiringMode = 0
 var aiming = true
 var canShoot = true
 var aimDirection = Vector2.ZERO
+
 @onready var shootTimer = get_node("ShootTimer")
 @onready var delayedShotTimer = get_node("ShootTimer")
 @onready var switchTimer = get_node("/root/Main/SwitchTimer")
-
 @onready var modeGenerator = get_node("/root/Main/ModeGenerator")
+@onready var laserRay = get_node("LaserRayCaster")
 
 var projectile = preload("res://player_projectile.tscn")
+var laser = preload("res://player_laser.tscn")
 
 var rng = RandomNumberGenerator.new()
 
@@ -71,11 +73,21 @@ func _shoot():
 			"spray":
 				_spray(aimDirection,damage,speed,size)
 			"laser":
-				pass
+				_spawn_laser(damage, size)
 			"beam":
 				pass
 		shootTimer.start(firerate)
 		canShoot=false
+
+func _spawn_laser(damage,width):
+	var ray = _cast_ray_in_aim_direction()
+	var instance = laser.instantiate()
+	instance.position=global_position+ray/2
+	instance.set_damage(damage)
+	instance.get_node("AnimatedSprite2D").set_scale(Vector2(ray.length()/32, width))
+	instance.get_node("CollisionShape2D").set_scale(Vector2(ray.length()/32, width))
+	instance.look_at(global_position+ray)
+	get_tree().current_scene.add_child(instance)
 
 func _spawn_projectile(direction,damage,speed,size):
 	var instance = projectile.instantiate()
@@ -85,7 +97,7 @@ func _spawn_projectile(direction,damage,speed,size):
 	instance.get_node("AnimatedSprite2D").set_scale(Vector2(size, size))
 	instance.get_node("CollisionShape2D").set_scale(Vector2(size, size))
 	get_tree().current_scene.add_child(instance)
-
+	
 func _burst(direction,damage,speed,size):
 	for i in 4:
 		_spawn_projectile(direction,damage,speed,size)
@@ -95,6 +107,13 @@ func _spray(direction,damage,speed,size):
 	for i in 5:
 		_spawn_projectile(direction.rotated(deg_to_rad(-20+10*i)),damage,speed,size)
 		await get_tree().create_timer(0.05).timeout
+
+func _cast_ray_in_aim_direction():
+	laserRay.set_target_position(aimDirection*2000)
+	if(laserRay.is_colliding()):
+		return (laserRay.get_collision_point()-global_position)
+	else:
+		return (aimDirection*2000)
 
 #switch firing mode
 func _on_switch_timer_timeout():

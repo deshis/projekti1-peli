@@ -44,7 +44,7 @@ func _create_mode(bias: float):
 	var lower = 0.66
 	var upper = 1.5
 	var firingMode=[]
-	match rng.randi_range(0,5):
+	match rng.randi_range(7,7):
 		0:
 			firingMode.append("single")
 			firingMode.append(singleDamage*(snapped(randf_range(lower, upper), 0.01)+bias))
