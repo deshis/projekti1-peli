@@ -35,3 +35,5 @@ animation = &"new_animation"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rpcow")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -30,9 +30,8 @@ extends Node
 @export var spraySize = 1
 @export var sprayDamage = 5
 
-@export var beamFirerate = 1
 @export var beamSize = 0.8
-@export var beamDamage = 5
+@export var beamDamage = 0.1 #low because it triggers every frame
 
 @export var laserFirerate = 1
 @export var laserSize = 0.8
@@ -44,7 +43,7 @@ func _create_mode(bias: float):
 	var lower = 0.66
 	var upper = 1.5
 	var firingMode=[]
-	match rng.randi_range(7,7):
+	match rng.randi_range(0,7):
 		0:
 			firingMode.append("single")
 			firingMode.append(singleDamage*(snapped(randf_range(lower, upper), 0.01)+bias))
@@ -90,7 +89,7 @@ func _create_mode(bias: float):
 		7:
 			firingMode.append("beam")
 			firingMode.append(beamDamage*(snapped(randf_range(lower, upper), 0.01)+bias))
-			firingMode.append(beamFirerate/(snapped(randf_range(lower, upper), 0.01)+bias))
+			firingMode.append(-1)
 			firingMode.append(beamSize*(snapped(randf_range(lower, upper), 0.01)+bias))
 			firingMode.append(-1)
 

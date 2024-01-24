@@ -75,9 +75,23 @@ func _shoot():
 			"laser":
 				_spawn_laser(damage, size)
 			"beam":
-				pass
-		shootTimer.start(firerate)
-		canShoot=false
+				_spawn_beam(damage, size)
+		if(type!="beam"):
+			shootTimer.start(firerate)
+			canShoot=false
+
+func _spawn_beam(damage,width):
+	var ray = _cast_ray_in_aim_direction()
+	var instance = laser.instantiate()
+	instance.position=position+ray/2
+	instance.set_damage(damage)
+	instance.get_node("AnimatedSprite2D").set_scale(Vector2(ray.length()/32, width))
+	instance.get_node("CollisionShape2D").set_scale(Vector2(ray.length()/32, width))
+	instance.look_at(position+ray)
+	add_child(instance)
+	await Engine.get_main_loop().process_frame #wait 1 frame
+	get_child(3).queue_free()
+	
 
 func _spawn_laser(damage,width):
 	var ray = _cast_ray_in_aim_direction()
