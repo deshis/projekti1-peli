@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=15 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
 [ext_resource type="PackedScene" uid="uid://cbp1aedhpdugo" path="res://enemy_projectile.tscn" id="2_heipv"]
 [ext_resource type="PackedScene" uid="uid://kwnhyg72qcxf" path="res://hud.tscn" id="3_chuea"]
 [ext_resource type="Script" path="res://TimerBar.gd" id="6_07ov0"]
+[ext_resource type="Texture2D" uid="uid://cbqov0od40rql" path="res://sprites/box.png" id="7_2w87h"]
 [ext_resource type="Script" path="res://HealthBar.gd" id="7_tkodr"]
 [ext_resource type="Script" path="res://ModeGenerator.gd" id="8_lgtmv"]
 
@@ -32,6 +33,20 @@ bg_color = Color(0.462745, 0, 0.0941176, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nasut"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k4k65"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2w87h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htfn8"]
+size = Vector2(32.5, 32.5)
 
 [node name="Main" type="Node"]
 
@@ -74,7 +89,14 @@ position = Vector2(529, 177)
 
 [node name="Player" parent="." instance=ExtResource("1_66f0x")]
 
-[node name="EnvironmentTest" parent="." instance=ExtResource("2_heipv")]
-position = Vector2(421, 298)
+[node name="box" type="StaticBody2D" parent="."]
 collision_layer = 16
-timeoutSeconds = 9999.0
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="box"]
+position = Vector2(168, 187)
+sprite_frames = SubResource("SpriteFrames_k4k65")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box"]
+position = Vector2(167.75, 186.75)
+shape = SubResource("RectangleShape2D_htfn8")

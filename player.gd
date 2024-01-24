@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 signal PlayerHit
 
 @export var moveSpeed = 500
@@ -7,28 +7,22 @@ signal PlayerHit
 
 @onready var healthbar = get_node("/root/Main/HUD/HealthBar")
 
-
 #TODO iframes and sprint/dash
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	
-	#movement
-	var velocity = Vector2.ZERO
-	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if velocity.length() > 0:
-		if velocity.length()>1:
-			velocity=velocity.normalized() #stop character from moving faster diagonally
-		velocity = velocity * moveSpeed
-	position += velocity * delta #change character position
+func _physics_process(delta):
+	var input_direction = Vector2.ZERO
+	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	velocity = input_direction * moveSpeed
+	move_and_slide()
 	
 func _on_body_entered(body):
-	print("Entered body...")
+	print(body.get_collision_layer())
 	#if collide with enemyprojectile on layer 2, take damage and delete projectile. 
 	if body.get_collision_layer()==2:
 		_take_damage(body.get_damage())
@@ -53,5 +47,4 @@ func get_max_health():
 
 func update_health_ui():
 	healthbar.update_health()
-	
 	
