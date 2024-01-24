@@ -13,7 +13,6 @@ signal PlayerHit
 func _ready():
 	pass
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var input_direction = Vector2.ZERO
@@ -21,13 +20,7 @@ func _physics_process(delta):
 	velocity = input_direction * moveSpeed
 	move_and_slide()
 	
-func _on_body_entered(body):
-	print(body.get_collision_layer())
-	#if collide with enemyprojectile on layer 2, take damage and delete projectile. 
-	if body.get_collision_layer()==2:
-		_take_damage(body.get_damage())
-		body.queue_free()
-
+	
 func _take_damage(dmg):
 	currentHealth-=dmg
 	update_health_ui()
@@ -47,4 +40,9 @@ func get_max_health():
 
 func update_health_ui():
 	healthbar.update_health()
-	
+
+func _on_player_hurt_box_body_entered(body):
+	#if collide with enemyprojectile on layer 2, take damage and delete projectile. 
+	if body.get_collision_layer()==2:
+		_take_damage(body.get_damage())
+		body.queue_free()

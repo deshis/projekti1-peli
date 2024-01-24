@@ -31,11 +31,12 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 18
+collision_mask = 16
 script = ExtResource("1_xpekm")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_p3ylv")
 
@@ -48,6 +49,7 @@ script = ExtResource("3_w0cgv")
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="PlayerProjectileSpawner"]
 show_behind_parent = true
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_5yq2f")
 
 [node name="ShootTimer" type="Timer" parent="PlayerProjectileSpawner"]
@@ -61,4 +63,12 @@ hit_from_inside = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
+[node name="PlayerHurtBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtBox"]
+shape = SubResource("RectangleShape2D_4khy4")
+
 [connection signal="timeout" from="PlayerProjectileSpawner/ShootTimer" to="PlayerProjectileSpawner" method="_on_shoot_timer_timeout"]
+[connection signal="body_entered" from="PlayerHurtBox" to="." method="_on_player_hurt_box_body_entered"]
