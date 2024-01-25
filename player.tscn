@@ -59,9 +59,9 @@ one_shot = true
 collision_mask = 16
 hit_from_inside = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="."]
+process_callback = 0
 position_smoothing_enabled = true
-position_smoothing_speed = 10.0
 
 [node name="PlayerHurtBox" type="Area2D" parent="."]
 collision_layer = 32
