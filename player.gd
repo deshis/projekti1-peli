@@ -3,22 +3,22 @@ signal PlayerHit
 
 @export var moveSpeed = 500
 @export var sprintSpeed = 750
-
 var currentSpeed
 
 @export var maxHealth = 100
 @export var currentHealth = 80
-
 @onready var healthbar = get_node("/root/Main/HUD/HealthBar")
 
-#TODO iframes and sprint/dash
+@onready var iFrameTimer = get_node("iFrameTimer")
+var canTakeDamage = true
+@export var immunityTime = 0.3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(Input.is_action_pressed("sprint")):
 		currentSpeed=sprintSpeed
 	else:
@@ -52,5 +52,12 @@ func update_health_ui():
 func _on_player_hurt_box_body_entered(body):
 	#if collide with enemyprojectile on layer 2, take damage and delete projectile. 
 	if body.get_collision_layer()==2:
-		_take_damage(body.get_damage())
-		body.queue_free()
+		if(canTakeDamage): #iframes
+			canTakeDamage=false
+			iFrameTimer.start(immunityTime)
+			_take_damage(body.get_damage())
+			body.queue_free()
+
+
+func _on_i_frame_timer_timeout():
+	canTakeDamage=true

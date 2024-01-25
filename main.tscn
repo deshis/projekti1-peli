@@ -85,7 +85,8 @@ script = ExtResource("7_tkodr")
 script = ExtResource("8_lgtmv")
 
 [node name="EnemyProjectile" parent="." instance=ExtResource("2_heipv")]
-position = Vector2(529, 177)
+position = Vector2(368, 143)
+timeoutSeconds = 999.0
 
 [node name="Player" parent="." instance=ExtResource("1_66f0x")]
 
