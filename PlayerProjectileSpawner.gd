@@ -12,7 +12,6 @@ var canShoot = true
 var aimDirection = Vector2.ZERO
 
 @onready var shootTimer = get_node("ShootTimer")
-@onready var delayedShotTimer = get_node("ShootTimer")
 @onready var switchTimer = get_node("/root/Main/SwitchTimer")
 @onready var modeGenerator = get_node("/root/Main/ModeGenerator")
 @onready var laserRay = get_node("LaserRayCaster")
@@ -146,3 +145,9 @@ func _on_shoot_timer_timeout():
 #delayed shot timer for burst and spray firing modes
 func _on_delayed_shot_timer_timeout():
 	pass
+
+func _get_firing_modes():
+	return firingModes
+
+func _get_current_firing_mode():
+	return currentFiringMode

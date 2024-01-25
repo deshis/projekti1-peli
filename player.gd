@@ -7,7 +7,7 @@ var currentSpeed
 
 @export var maxHealth = 100
 @export var currentHealth = 80
-@onready var healthbar = get_node("/root/Main/HUD/HealthBar")
+@onready var healthbar = get_node("/root/Main/HUD/HealthBarMargin/HealthBar")
 
 @onready var iFrameTimer = get_node("iFrameTimer")
 var canTakeDamage = true
