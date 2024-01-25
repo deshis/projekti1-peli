@@ -2,6 +2,10 @@ extends CharacterBody2D
 signal PlayerHit
 
 @export var moveSpeed = 500
+@export var sprintSpeed = 750
+
+var currentSpeed
+
 @export var maxHealth = 100
 @export var currentHealth = 80
 
@@ -15,9 +19,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if(Input.is_action_pressed("sprint")):
+		currentSpeed=sprintSpeed
+	else:
+		currentSpeed=moveSpeed
 	var input_direction = Vector2.ZERO
 	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = input_direction * moveSpeed
+	velocity = input_direction * currentSpeed
 	move_and_slide()
 	
 	

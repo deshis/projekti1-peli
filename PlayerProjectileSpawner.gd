@@ -34,15 +34,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	crosshair.set_position(Vector2.ZERO) #if not aiming, the crosshair is hidden under the player
 	aimDirection = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	
-	#move crosshair
-	if(aimDirection.length()==0):
-		crosshair.set_position(Vector2(0, 0)) #if not aiming, the crosshair is hidden under the player
-	else:
-		aimDirection=aimDirection.normalized()
-		crosshair.set_position(aimDirection * delta * crosshairDistance)  #change crosshair position
-		_shoot()
+	
+	if(!Input.is_action_pressed("sprint")):	#disable aiming while sprinting
+		if(aimDirection.length()>0):
+			aimDirection=aimDirection.normalized() 
+			crosshair.set_position(aimDirection * delta * crosshairDistance)  #change crosshair position
+			_shoot()
+
+
+
 
 
 func _shoot():
