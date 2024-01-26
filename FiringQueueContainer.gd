@@ -28,11 +28,5 @@ func _update_firing_mode_ui():
 
 	var textureIndex = 0
 	for mode in firingModes:
-		var type = mode[0]
-		match type:
-			"single":
-				textureRects[textureIndex].texture=load("res://sprites/single.png")
-			"triple":
-				textureRects[textureIndex].texture=load("res://sprites/triple.png")
+		textureRects[textureIndex].texture=load("res://sprites/"+mode[0]+".png")
 		textureIndex+=1
-

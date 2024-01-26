@@ -64,7 +64,7 @@ func _shoot():
 				_spawn_projectile(aimDirection.rotated(deg_to_rad(7.5)),damage,speed,size)
 				_spawn_projectile(aimDirection.rotated(deg_to_rad(-7.5)),damage,speed,size)
 			"blast":
-				for i in rng.randi_range(4,8):
+				for i in rng.randi_range(6,8):
 					_spawn_projectile(aimDirection.rotated(deg_to_rad(rng.randfn(0,5))),damage,speed*rng.randf_range(0.9,1.1),size*rng.randf_range(0.9,1.1))
 			"circle":
 				var circleAmount=32.0
@@ -115,7 +115,7 @@ func _spawn_projectile(direction,damage,speed,size):
 	get_tree().current_scene.add_child(instance)
 	
 func _burst(direction,damage,speed,size):
-	for i in 4:
+	for i in rng.randi_range(3,5):
 		_spawn_projectile(direction,damage,speed,size)
 		await get_tree().create_timer(0.05).timeout
 
