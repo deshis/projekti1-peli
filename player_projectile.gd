@@ -19,8 +19,14 @@ func _ready():
 	set_max_contacts_reported(1)
 	
 	#delete projectile after 5 seconds
+	_despawn()
+
+func _despawn():
 	await get_tree().create_timer(timeoutSeconds).timeout
-	queue_free()
+	if(get_tree().paused): #dont remove while game is paused
+		_despawn()
+	else:
+		queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

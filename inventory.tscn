@@ -1,0 +1,173 @@
+[gd_scene load_steps=10 format=3 uid="uid://scbsjq8e0nub"]
+
+[ext_resource type="Script" path="res://CurrentModes.gd" id="1_j4xuh"]
+[ext_resource type="Script" path="res://inventory.gd" id="1_khwno"]
+[ext_resource type="Script" path="res://CurrentFiringModeContainer.gd" id="2_7df2b"]
+[ext_resource type="Texture2D" uid="uid://ujaui61aj1lg" path="res://sprites/single.png" id="3_gmyqk"]
+[ext_resource type="Script" path="res://Descriptions.gd" id="4_v7xpy"]
+[ext_resource type="Script" path="res://DescriptionContainer.gd" id="5_njt3i"]
+[ext_resource type="Script" path="res://NewMode.gd" id="7_fndot"]
+[ext_resource type="Script" path="res://NewModeTextMargin.gd" id="8_a84pt"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_hmc0p"]
+
+[node name="Inventory" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_khwno")
+
+[node name="InventorySplitter" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrentModes" type="VBoxContainer" parent="InventorySplitter"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("1_j4xuh")
+
+[node name="FiringModeContainer" type="PanelContainer" parent="InventorySplitter/CurrentModes"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_7df2b")
+
+[node name="FiringMode" type="TextureRect" parent="InventorySplitter/CurrentModes/FiringModeContainer"]
+layout_mode = 2
+texture = ExtResource("3_gmyqk")
+expand_mode = 4
+
+[node name="FiringModeContainer2" type="MarginContainer" parent="InventorySplitter/CurrentModes"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_7df2b")
+
+[node name="FiringMode" type="TextureRect" parent="InventorySplitter/CurrentModes/FiringModeContainer2"]
+layout_mode = 2
+texture = ExtResource("3_gmyqk")
+expand_mode = 4
+
+[node name="FiringModeContainer3" type="MarginContainer" parent="InventorySplitter/CurrentModes"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_7df2b")
+
+[node name="FiringMode" type="TextureRect" parent="InventorySplitter/CurrentModes/FiringModeContainer3"]
+layout_mode = 2
+texture = ExtResource("3_gmyqk")
+expand_mode = 4
+
+[node name="FiringModeContainer4" type="MarginContainer" parent="InventorySplitter/CurrentModes"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_7df2b")
+
+[node name="FiringMode" type="TextureRect" parent="InventorySplitter/CurrentModes/FiringModeContainer4"]
+layout_mode = 2
+texture = ExtResource("3_gmyqk")
+expand_mode = 4
+
+[node name="FiringModeContainer5" type="MarginContainer" parent="InventorySplitter/CurrentModes"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_7df2b")
+
+[node name="FiringMode" type="TextureRect" parent="InventorySplitter/CurrentModes/FiringModeContainer5"]
+layout_mode = 2
+texture = ExtResource("3_gmyqk")
+expand_mode = 4
+
+[node name="Descriptions" type="VBoxContainer" parent="InventorySplitter"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+script = ExtResource("4_v7xpy")
+
+[node name="DescriptionContainer" type="MarginContainer" parent="InventorySplitter/Descriptions"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("5_njt3i")
+
+[node name="Description" type="RichTextLabel" parent="InventorySplitter/Descriptions/DescriptionContainer"]
+layout_mode = 2
+fit_content = true
+scroll_active = false
+
+[node name="DescriptionContainer2" type="MarginContainer" parent="InventorySplitter/Descriptions"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("5_njt3i")
+
+[node name="Description" type="RichTextLabel" parent="InventorySplitter/Descriptions/DescriptionContainer2"]
+layout_mode = 2
+fit_content = true
+scroll_active = false
+
+[node name="DescriptionContainer3" type="MarginContainer" parent="InventorySplitter/Descriptions"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("5_njt3i")
+
+[node name="Description" type="RichTextLabel" parent="InventorySplitter/Descriptions/DescriptionContainer3"]
+layout_mode = 2
+fit_content = true
+scroll_active = false
+
+[node name="DescriptionContainer4" type="MarginContainer" parent="InventorySplitter/Descriptions"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("5_njt3i")
+
+[node name="Description" type="RichTextLabel" parent="InventorySplitter/Descriptions/DescriptionContainer4"]
+layout_mode = 2
+fit_content = true
+scroll_active = false
+
+[node name="DescriptionContainer5" type="MarginContainer" parent="InventorySplitter/Descriptions"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("5_njt3i")
+
+[node name="Description" type="RichTextLabel" parent="InventorySplitter/Descriptions/DescriptionContainer5"]
+layout_mode = 2
+fit_content = true
+scroll_active = false
+
+[node name="NewMode" type="MarginContainer" parent="InventorySplitter"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("7_fndot")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventorySplitter/NewMode"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NewModeTexture" type="TextureRect" parent="InventorySplitter/NewMode/VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = SubResource("ImageTexture_hmc0p")
+
+[node name="NewModeTextMargin" type="MarginContainer" parent="InventorySplitter/NewMode/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("8_a84pt")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InventorySplitter/NewMode/VBoxContainer/NewModeTextMargin"]
+layout_mode = 2
+size_flags_vertical = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=24 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
 [ext_resource type="Script" path="res://TimerBarMargin.gd" id="2_fkl05"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://CurrentFiringModeContainer.gd" id="7_qn0dw"]
 [ext_resource type="Script" path="res://HealthBar.gd" id="7_tkodr"]
 [ext_resource type="Script" path="res://ModeGenerator.gd" id="8_lgtmv"]
+[ext_resource type="PackedScene" uid="uid://cut2p4caho3gb" path="res://item_pick_up.tscn" id="15_4egnq"]
+[ext_resource type="Script" path="res://GameDirector.gd" id="16_c003v"]
 
 [sub_resource type="GDScript" id="GDScript_h37l6"]
 script/source = "extends Timer
@@ -63,7 +65,7 @@ autostart = true
 script = SubResource("GDScript_h37l6")
 
 [node name="HUD" parent="." instance=ExtResource("3_chuea")]
-script = null
+process_mode = 3
 
 [node name="TimerBarMargin" type="MarginContainer" parent="HUD"]
 anchors_preset = 2
@@ -174,3 +176,9 @@ sprite_frames = SubResource("SpriteFrames_k4k65")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="box"]
 position = Vector2(167.75, 186.75)
 shape = SubResource("RectangleShape2D_htfn8")
+
+[node name="ItemPickUp" parent="." instance=ExtResource("15_4egnq")]
+position = Vector2(602, 76)
+
+[node name="GameDirector" type="Node" parent="."]
+script = ExtResource("16_c003v")

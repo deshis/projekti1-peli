@@ -29,7 +29,6 @@ func _ready():
 	for i in maxModeAmount:
 		var firingMode=modeGenerator._create_mode(0)
 		firingModes.append(firingMode)
-	print(str(firingModes))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -151,3 +150,6 @@ func _get_firing_modes():
 
 func _get_current_firing_mode():
 	return currentFiringMode
+
+func _swap_mode(mode, index):
+	firingModes[index]=mode

@@ -12,8 +12,8 @@ extends Node
 
 @export var blastSpeed = 800
 @export var blastFirerate = 1.5
-@export var blastSize = 0.8
-@export var blastDamage = 5
+@export var blastSize = 0.7
+@export var blastDamage = 3
 
 @export var circleSpeed = 1000
 @export var circleFirerate = 0.75
@@ -43,7 +43,7 @@ func _create_mode(bias: float):
 	var lower = 0.66
 	var upper = 1.5
 	var firingMode=[]
-	match rng.randi_range(5,7):
+	match rng.randi_range(0,7):
 		0:
 			firingMode.append("single")
 			firingMode.append(singleDamage*(snapped(randf_range(lower, upper), 0.01)+bias))
