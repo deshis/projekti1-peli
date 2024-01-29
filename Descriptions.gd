@@ -12,15 +12,15 @@ func _ready():
 	var textIndex=0
 	for mode in firingModes:
 		textBoxes[textIndex].append_text("TYPE: "+str(mode[0])+"\n")
-		textBoxes[textIndex].append_text("DAMAGE: "+str(mode[1])+"\n")
+		textBoxes[textIndex].append_text("DAMAGE: "+str(snapped(mode[1], 0.01))+"\n")
 		if(mode[2]==-1):
 			textBoxes[textIndex].append_text("FIRERATE: N/A \n")
 		else:
 			textBoxes[textIndex].append_text("FIRERATE: "+str(snapped(mode[2], 0.01))+"\n")
-		textBoxes[textIndex].append_text("SIZE: "+str(mode[3])+"\n")
+		textBoxes[textIndex].append_text("SIZE: "+str(snapped(mode[3], 0.01))+"\n")
 		if(mode[4]==-1):
 			textBoxes[textIndex].append_text("SPEED: N/A \n")
 		else:
-			textBoxes[textIndex].append_text("SPEED: "+str(mode[4])+"\n")
-		textIndex+=1
+			textBoxes[textIndex].append_text("SPEED: "+str(snapped(mode[4], 1))+"\n")
+		textIndex+=1 
 	

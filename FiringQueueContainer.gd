@@ -24,8 +24,6 @@ func _update_firing_mode_ui():
 	firingModes.append_array(temp)
 	for i in range(temp.size()):
 		firingModes.pop_front()
-
-
 	var textureIndex = 0
 	for mode in firingModes:
 		textureRects[textureIndex].texture=load("res://sprites/"+mode[0]+".png")

@@ -182,3 +182,9 @@ position = Vector2(602, 76)
 
 [node name="GameDirector" type="Node" parent="."]
 script = ExtResource("16_c003v")
+
+[node name="ItemPickUp2" parent="." instance=ExtResource("15_4egnq")]
+position = Vector2(627, 331)
+
+[node name="ItemPickUp3" parent="." instance=ExtResource("15_4egnq")]
+position = Vector2(862, 224)

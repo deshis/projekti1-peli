@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://scbsjq8e0nub"]
+[gd_scene load_steps=11 format=3 uid="uid://scbsjq8e0nub"]
 
 [ext_resource type="Script" path="res://CurrentModes.gd" id="1_j4xuh"]
 [ext_resource type="Script" path="res://inventory.gd" id="1_khwno"]
@@ -8,6 +8,13 @@
 [ext_resource type="Script" path="res://DescriptionContainer.gd" id="5_njt3i"]
 [ext_resource type="Script" path="res://NewMode.gd" id="7_fndot"]
 [ext_resource type="Script" path="res://NewModeTextMargin.gd" id="8_a84pt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vktc3"]
+bg_color = Color(0.909804, 0.909804, 0.909804, 1)
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
 
 [sub_resource type="ImageTexture" id="ImageTexture_hmc0p"]
 
@@ -33,7 +40,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 script = ExtResource("1_j4xuh")
 
-[node name="FiringModeContainer" type="PanelContainer" parent="InventorySplitter/CurrentModes"]
+[node name="FiringModeContainer" type="MarginContainer" parent="InventorySplitter/CurrentModes"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_vertical = 3
@@ -43,6 +50,12 @@ script = ExtResource("2_7df2b")
 layout_mode = 2
 texture = ExtResource("3_gmyqk")
 expand_mode = 4
+
+[node name="Panel" type="Panel" parent="InventorySplitter/CurrentModes/FiringModeContainer"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vktc3")
 
 [node name="FiringModeContainer2" type="MarginContainer" parent="InventorySplitter/CurrentModes"]
 custom_minimum_size = Vector2(128, 128)
@@ -55,6 +68,12 @@ layout_mode = 2
 texture = ExtResource("3_gmyqk")
 expand_mode = 4
 
+[node name="Panel" type="Panel" parent="InventorySplitter/CurrentModes/FiringModeContainer2"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vktc3")
+
 [node name="FiringModeContainer3" type="MarginContainer" parent="InventorySplitter/CurrentModes"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
@@ -65,6 +84,12 @@ script = ExtResource("2_7df2b")
 layout_mode = 2
 texture = ExtResource("3_gmyqk")
 expand_mode = 4
+
+[node name="Panel" type="Panel" parent="InventorySplitter/CurrentModes/FiringModeContainer3"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vktc3")
 
 [node name="FiringModeContainer4" type="MarginContainer" parent="InventorySplitter/CurrentModes"]
 custom_minimum_size = Vector2(128, 128)
@@ -77,6 +102,12 @@ layout_mode = 2
 texture = ExtResource("3_gmyqk")
 expand_mode = 4
 
+[node name="Panel" type="Panel" parent="InventorySplitter/CurrentModes/FiringModeContainer4"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vktc3")
+
 [node name="FiringModeContainer5" type="MarginContainer" parent="InventorySplitter/CurrentModes"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
@@ -87,6 +118,12 @@ script = ExtResource("2_7df2b")
 layout_mode = 2
 texture = ExtResource("3_gmyqk")
 expand_mode = 4
+
+[node name="Panel" type="Panel" parent="InventorySplitter/CurrentModes/FiringModeContainer5"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vktc3")
 
 [node name="Descriptions" type="VBoxContainer" parent="InventorySplitter"]
 custom_minimum_size = Vector2(700, 0)
@@ -171,3 +208,16 @@ script = ExtResource("8_a84pt")
 [node name="RichTextLabel" type="RichTextLabel" parent="InventorySplitter/NewMode/VBoxContainer/NewModeTextMargin"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="InventorySplitter/NewMode"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = -50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 200
+
+[node name="Panel" type="Panel" parent="InventorySplitter/NewMode/MarginContainer"]
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vktc3")

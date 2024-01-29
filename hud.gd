@@ -13,7 +13,8 @@ func _toggle_inventory():
 	if(!isInventoryOpen):
 		_open_inventory(null)
 	else:
-		_close_inventory()
+		if(!get_child(4).mode):
+			_close_inventory()
 	
 func _open_inventory(itempickup):
 	for i in get_child_count():
@@ -22,6 +23,7 @@ func _open_inventory(itempickup):
 	if(itempickup):
 		item = itempickup
 		instance.mode = item._get_mode()
+		instance.item = item
 	add_child(instance)
 	isInventoryOpen=true
 	get_tree().paused = true
