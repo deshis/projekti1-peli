@@ -20,6 +20,7 @@ func _ready():
 	selectedIndex = 0
 	if(!mode):
 		get_child(0).get_child(2).set_process(false)
+		get_child(0).get_child(2).visible=false
 	else:
 		get_child(0).get_child(2).set_process(true)
 		textureBox.texture=load("res://sprites/"+mode[0]+".png")
@@ -60,8 +61,7 @@ func _process(_delta):
 			get_parent()._close_inventory()
 			get_parent().get_child(3).get_child(0)._update_firing_mode_ui()
 			item.queue_free()
-			
-
+		
 func _highlight(index):
 	for i in currentModes.get_children().size():
 		if(i==index):

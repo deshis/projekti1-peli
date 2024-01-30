@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://scbsjq8e0nub"]
+[gd_scene load_steps=12 format=3 uid="uid://scbsjq8e0nub"]
 
 [ext_resource type="Script" path="res://CurrentModes.gd" id="1_j4xuh"]
 [ext_resource type="Script" path="res://inventory.gd" id="1_khwno"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://DescriptionContainer.gd" id="5_njt3i"]
 [ext_resource type="Script" path="res://NewMode.gd" id="7_fndot"]
 [ext_resource type="Script" path="res://NewModeTextMargin.gd" id="8_a84pt"]
+[ext_resource type="Script" path="res://AcceptDiscardButtonPrompt.gd" id="9_es5va"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vktc3"]
 bg_color = Color(0.909804, 0.909804, 0.909804, 1)
@@ -208,6 +209,19 @@ script = ExtResource("8_a84pt")
 [node name="RichTextLabel" type="RichTextLabel" parent="InventorySplitter/NewMode/VBoxContainer/NewModeTextMargin"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="InventorySplitter/NewMode/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = -100
+
+[node name="AcceptDiscardButtonPrompt" type="RichTextLabel" parent="InventorySplitter/NewMode/VBoxContainer/ButtonPromptMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "RED IF CONTROLLER"
+fit_content = true
+scroll_active = false
+script = ExtResource("9_es5va")
 
 [node name="MarginContainer" type="MarginContainer" parent="InventorySplitter/NewMode"]
 visible = false

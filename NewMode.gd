@@ -15,8 +15,8 @@ func _process(_delta):
 		if(Input.is_action_just_pressed("accept")):
 			swapPressed = true
 			_swap()
-		elif(Input.is_action_just_pressed("discard")):
-			_remove()
+	if(Input.is_action_just_pressed("discard")):
+		_remove()
 
 func _swap():
 	self.get_child(1).set_visible(true)
