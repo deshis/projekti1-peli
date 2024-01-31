@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://scbsjq8e0nub"]
+[gd_scene load_steps=13 format=3 uid="uid://scbsjq8e0nub"]
 
 [ext_resource type="Script" path="res://CurrentModes.gd" id="1_j4xuh"]
 [ext_resource type="Script" path="res://inventory.gd" id="1_khwno"]
@@ -18,6 +18,8 @@ expand_margin_right = 8.0
 expand_margin_bottom = 8.0
 
 [sub_resource type="ImageTexture" id="ImageTexture_hmc0p"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wwxiy"]
 
 [node name="Inventory" type="Panel"]
 anchors_preset = 15
@@ -218,7 +220,6 @@ theme_override_constants/margin_top = -100
 [node name="AcceptDiscardButtonPrompt" type="RichTextLabel" parent="InventorySplitter/NewMode/VBoxContainer/ButtonPromptMargin"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "RED IF CONTROLLER"
 fit_content = true
 scroll_active = false
 script = ExtResource("9_es5va")
@@ -235,3 +236,70 @@ theme_override_constants/margin_bottom = 200
 z_index = -1
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vktc3")
+
+[node name="PauseMenuButtons" type="VBoxContainer" parent="InventorySplitter"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InventorySplitter/PauseMenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 100
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InventorySplitter/PauseMenuButtons/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = " CONTINUE"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_wwxiy")]
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="InventorySplitter/PauseMenuButtons/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="SelectedPanel" type="Panel" parent="InventorySplitter/PauseMenuButtons/MarginContainer"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vktc3")
+
+[node name="BackgroundPanel" type="Panel" parent="InventorySplitter/PauseMenuButtons/MarginContainer"]
+z_index = -2
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="InventorySplitter/PauseMenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 400
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InventorySplitter/PauseMenuButtons/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = " QUIT GAME"
+fit_content = true
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="InventorySplitter/PauseMenuButtons/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="SelectedPanel" type="Panel" parent="InventorySplitter/PauseMenuButtons/MarginContainer2"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vktc3")
+
+[node name="BackgroundPanel" type="Panel" parent="InventorySplitter/PauseMenuButtons/MarginContainer2"]
+z_index = -2
+layout_mode = 2
