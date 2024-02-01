@@ -125,6 +125,7 @@ func _spray(direction,damage,speed,size):
 
 func _cast_ray_in_aim_direction():
 	laserRay.set_target_position(aimDirection*2000)
+	laserRay.force_raycast_update()
 	if(laserRay.is_colliding()):
 		return (laserRay.get_collision_point()-global_position)
 	else:

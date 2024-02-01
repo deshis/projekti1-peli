@@ -16,8 +16,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4khy4"]
-size = Vector2(52, 52)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08cib"]
+radius = 25.0
+height = 50.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5yq2f"]
 animations = [{
@@ -41,7 +42,7 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_p3ylv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_4khy4")
+shape = SubResource("CapsuleShape2D_08cib")
 
 [node name="PlayerProjectileSpawner" type="Node2D" parent="."]
 show_behind_parent = true
@@ -57,7 +58,6 @@ one_shot = true
 
 [node name="LaserRayCaster" type="RayCast2D" parent="PlayerProjectileSpawner"]
 collision_mask = 16
-hit_from_inside = true
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_callback = 0
@@ -67,8 +67,8 @@ position_smoothing_enabled = true
 collision_layer = 32
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtBox"]
-shape = SubResource("RectangleShape2D_4khy4")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerHurtBox"]
+shape = SubResource("CapsuleShape2D_08cib")
 
 [node name="iFrameTimer" type="Timer" parent="."]
 

@@ -3,18 +3,15 @@ extends MarginContainer
 @onready var item = get_parent().get_parent().get_parent()._get_item()
 @onready var inventory = get_parent().get_parent()
 
-var swapPressed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_theme_constant_override("margin_top", 100)
-	
+
 
 func _process(_delta):
-	if(!swapPressed):
-		if(Input.is_action_just_pressed("accept")):
-			swapPressed = true
-			_swap()
+	if(Input.is_action_just_pressed("accept")):
+		_swap()
 	if(Input.is_action_just_pressed("discard")):
 		_remove()
 

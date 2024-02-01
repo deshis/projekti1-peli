@@ -1,7 +1,7 @@
 extends RigidBody2D
 signal ProjectileHit
 
-@export var damage = 6
+@export var damage = 5
 @export var timeoutSeconds = 5.0
 
 func get_damage():
@@ -33,6 +33,5 @@ func _process(_delta):
 	pass
 
 
-func _on_body_entered(body): #remove if collide with environment
-	if(body.get_collision_layer()==16):
-		queue_free()
+func _on_body_entered(body): #remove on collision
+	queue_free()

@@ -29,6 +29,7 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 	
+	
 func _take_damage(dmg):
 	currentHealth-=dmg
 	update_health_ui()

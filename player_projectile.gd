@@ -34,5 +34,4 @@ func _process(_delta):
 
 
 func _on_body_entered(body): #remove if collide with environment
-	if(body.get_collision_layer()==16):
-		queue_free()
+	queue_free()
