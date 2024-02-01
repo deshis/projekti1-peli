@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://7nr24eoqijq"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_d5gho"]
+[ext_resource type="Texture2D" uid="uid://c3b6in3ku53gq" path="res://sprites/icon.svg" id="1_i5sb4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rllpx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i5sb4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7oewa"]
+radius = 25.0
+height = 50.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 16
+motion_mode = 1
+wall_min_slide_angle = 0.0174533
+script = ExtResource("1_d5gho")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.32549, 0.247059, 1)
+z_index = 2
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_rllpx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7oewa")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 25.0
+max_speed = 300.0
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
