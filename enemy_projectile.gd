@@ -33,5 +33,5 @@ func _process(_delta):
 	pass
 
 
-func _on_body_entered(body): #remove on collision
+func _on_body_entered(_body): #remove on collision
 	queue_free()

@@ -33,5 +33,5 @@ func _process(_delta):
 	pass
 
 
-func _on_body_entered(body): #remove if collide with environment
+func _on_body_entered(_body): #remove if collide with environment
 	queue_free()

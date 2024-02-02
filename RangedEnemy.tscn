@@ -18,7 +18,7 @@ animations = [{
 radius = 25.0
 height = 50.0
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="RangedEnemy" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 16
 motion_mode = 1
@@ -35,15 +35,21 @@ sprite_frames = SubResource("SpriteFrames_rllpx")
 shape = SubResource("CapsuleShape2D_7oewa")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 100.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 25.0
 max_speed = 300.0
 debug_enabled = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="TargetRefreshTimer" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
 
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_path_changed"]
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TargetRefreshTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
