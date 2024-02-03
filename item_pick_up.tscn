@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c26ih12ut42bw" path="res://sprites/particles/star_08.png" id="9_3ubkd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7m4g4"]
-radius = 84.0536
+radius = 54.0
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_byeox"]
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=25 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
 [ext_resource type="Script" path="res://TimerBarMargin.gd" id="2_fkl05"]
-[ext_resource type="PackedScene" uid="uid://cbp1aedhpdugo" path="res://enemy_projectile.tscn" id="2_heipv"]
 [ext_resource type="PackedScene" uid="uid://kwnhyg72qcxf" path="res://hud.tscn" id="3_chuea"]
 [ext_resource type="Script" path="res://HealthBarMargin.gd" id="4_mlqba"]
 [ext_resource type="Script" path="res://FiringQueueMargin.gd" id="6_1siw1"]
@@ -13,8 +12,8 @@
 [ext_resource type="Script" path="res://CurrentFiringModeContainer.gd" id="7_qn0dw"]
 [ext_resource type="Script" path="res://HealthBar.gd" id="7_tkodr"]
 [ext_resource type="Script" path="res://ModeGenerator.gd" id="8_lgtmv"]
-[ext_resource type="PackedScene" uid="uid://cut2p4caho3gb" path="res://item_pick_up.tscn" id="15_4egnq"]
 [ext_resource type="Script" path="res://GameDirector.gd" id="16_c003v"]
+[ext_resource type="PackedScene" uid="uid://bpir8wlvqw8eo" path="res://MeleeEnemy.tscn" id="17_ay66q"]
 [ext_resource type="Texture2D" uid="uid://dvy0m3nixef4" path="res://sprites/tiletest.png" id="17_wpvxt"]
 [ext_resource type="PackedScene" uid="uid://7nr24eoqijq" path="res://RangedEnemy.tscn" id="18_jhvnn"]
 
@@ -184,12 +183,6 @@ script = ExtResource("8_lgtmv")
 [node name="GameDirector" type="Node" parent="."]
 script = ExtResource("16_c003v")
 
-[node name="EnemyProjectile" parent="." instance=ExtResource("2_heipv")]
-position = Vector2(368, 143)
-timeoutSeconds = 999.0
+[node name="MeleeEnemy" parent="." instance=ExtResource("17_ay66q")]
 
-[node name="ItemPickUp" parent="." instance=ExtResource("15_4egnq")]
-position = Vector2(602, 76)
-
-[node name="Enemy" parent="." instance=ExtResource("18_jhvnn")]
-position = Vector2(1224, 258)
+[node name="RangedEnemy" parent="." instance=ExtResource("18_jhvnn")]
