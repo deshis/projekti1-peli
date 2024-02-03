@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpir8wlvqw8eo"]
+
+[ext_resource type="Texture2D" uid="uid://c3b6in3ku53gq" path="res://sprites/icon.svg" id="1_7dxfe"]
+[ext_resource type="Script" path="res://MeleeEnemy.gd" id="1_moxgo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2a2v7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7dxfe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08l3f"]
+radius = 25.0
+height = 50.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4rpim"]
+radius = 25.0
+height = 50.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb2na"]
+bg_color = Color(0.462745, 0, 0.0941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_524it"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="MeleeEnemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 16
+motion_mode = 1
+wall_min_slide_angle = 0.0174533
+script = ExtResource("1_moxgo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.32549, 0.247059, 1)
+z_index = 2
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_2a2v7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_08l3f")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 100.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 25.0
+max_speed = 300.0
+
+[node name="TargetRefreshTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="EnemyHurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
+shape = SubResource("CapsuleShape2D_4rpim")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+z_index = 1
+offset_left = -26.0
+offset_top = -37.0
+offset_right = 26.0
+offset_bottom = -28.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cb2na")
+theme_override_styles/fill = SubResource("StyleBoxFlat_524it")
+show_percentage = false
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="TargetRefreshTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="body_entered" from="EnemyHurtBox" to="." method="_on_enemy_hurt_box_body_entered"]
