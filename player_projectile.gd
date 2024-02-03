@@ -4,6 +4,11 @@ signal ProjectileHit
 var damage
 @export var timeoutSeconds = 5.0
 
+var type = "projectile"
+
+func _get_type():
+	return type
+
 func get_damage():
 	return damage
 	

@@ -66,7 +66,7 @@ func _shoot():
 				for i in rng.randi_range(6,8):
 					_spawn_projectile(aimDirection.rotated(deg_to_rad(rng.randfn(0,5))),damage,speed*rng.randf_range(0.9,1.1),size*rng.randf_range(0.9,1.1))
 			"circle":
-				var circleAmount=32.0
+				var circleAmount=16.0
 				for i in circleAmount:
 					_spawn_projectile(aimDirection.rotated(deg_to_rad(360/circleAmount*i)),damage,speed,size)
 			"burst":
@@ -84,14 +84,13 @@ func _shoot():
 func _spawn_beam(damage,width):
 	var ray = _cast_ray_in_aim_direction()
 	var instance = laser.instantiate()
-	instance.position=position+ray/2
+	instance.position=global_position+ray/2
 	instance.set_damage(damage)
 	instance.get_node("AnimatedSprite2D").set_scale(Vector2(ray.length()/32, width))
 	instance.get_node("CollisionShape2D").set_scale(Vector2(ray.length()/32, width))
-	instance.look_at(position+ray)
-	add_child(instance)
-	await Engine.get_main_loop().process_frame #wait 1 frame
-	get_child(3).queue_free()
+	instance.look_at(global_position+ray)
+	instance.continuous=true
+	get_tree().current_scene.add_child(instance)
 	
 
 func _spawn_laser(damage,width):
