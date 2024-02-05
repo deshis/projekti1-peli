@@ -22,7 +22,13 @@ var rng = RandomNumberGenerator.new()
 var meleeHitbox = preload("res://MeleeHitbox.tscn")
 var item = preload("res://item_pick_up.tscn")
 
+var budget
+
 func _ready():
+	if(budget):
+		SPEED=SPEED+SPEED*budget/100
+		maxHealth=maxHealth+maxHealth*budget/100
+		damage=damage+damage*budget/100
 	currentHealth=maxHealth
 	healthBar.max_value = maxHealth
 	healthBar.value = currentHealth

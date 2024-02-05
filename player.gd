@@ -16,8 +16,8 @@ var canTakeDamage = true
 @onready var regenTimer = get_node("HealthRegenTimer")
 @onready var regenCooldownTimer = get_node("HealthRegenCooldownTimer")
 
-var healCooldown=5.0
-var canHeal = true
+var healCooldown=10.0
+var canRegen = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -63,7 +63,7 @@ func _on_player_hurt_box_body_entered(body):
 		if(canTakeDamage): #iframes
 			canTakeDamage=false
 			iFrameTimer.start(immunityTime)
-			canHeal=false
+			canRegen=false
 			regenCooldownTimer.start(healCooldown)
 			_take_damage(body.get_damage())
 			body.queue_free()
@@ -74,10 +74,10 @@ func _on_i_frame_timer_timeout():
 
 
 func _on_health_regen_timer_timeout():
-	if(currentHealth<maxHealth&&canHeal):
+	if(currentHealth<maxHealth&&canRegen):
 		currentHealth+=1
 		update_health_ui()
 
 
 func _on_health_regen_cooldown_timer_timeout():
-	canHeal=true
+	canRegen=true

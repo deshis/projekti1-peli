@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var modeGenerator = get_node("/root/Main/ModeGenerator")
-@onready var gameDirector = get_node("/root/Main/GameDirector")
+@onready var gameDirector = get_node("/root/Main/Player/GameDirector")
 @onready var hud = get_node("/root/Main/HUD")
 var mode
 

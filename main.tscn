@@ -80,6 +80,14 @@ layer_0/tile_data = PackedInt32Array(-131076, 1, 0, -65540, 1, 0, -4, 1, 0, 6553
 [node name="Player" parent="." instance=ExtResource("1_66f0x")]
 position = Vector2(75, 85)
 
+[node name="GameDirector" type="Node" parent="Player"]
+script = ExtResource("16_c003v")
+
+[node name="MoneyTimer" type="Timer" parent="Player/GameDirector"]
+autostart = true
+
+[node name="SpawnTimer" type="Timer" parent="Player/GameDirector"]
+
 [node name="HUD" parent="." instance=ExtResource("3_chuea")]
 process_mode = 3
 
@@ -180,9 +188,9 @@ script = SubResource("GDScript_h37l6")
 [node name="ModeGenerator" type="Node" parent="."]
 script = ExtResource("8_lgtmv")
 
-[node name="GameDirector" type="Node" parent="."]
-script = ExtResource("16_c003v")
-
 [node name="MeleeEnemy" parent="." instance=ExtResource("17_ay66q")]
 
 [node name="RangedEnemy" parent="." instance=ExtResource("18_jhvnn")]
+
+[connection signal="timeout" from="Player/GameDirector/MoneyTimer" to="Player/GameDirector" method="_on_money_timer_timeout"]
+[connection signal="timeout" from="Player/GameDirector/SpawnTimer" to="Player/GameDirector" method="_on_spawn_timer_timeout"]

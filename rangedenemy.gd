@@ -27,13 +27,25 @@ var projectile = preload("res://enemy_projectile.tscn")
 var firingMode
 var rng = RandomNumberGenerator.new()
 
+
+var bias
+
 var item = preload("res://item_pick_up.tscn")
 
+var budget
+
 func _ready():
+	if(budget):
+		SPEED=SPEED+SPEED*budget/100
+		maxHealth=maxHealth+maxHealth*budget/100
+		bias=budget/100
 	currentHealth=maxHealth
 	healthBar.max_value = maxHealth
 	healthBar.value = currentHealth
-	firingMode=modeGenerator._create_mode(0, 0, 5)
+	if(budget):
+		firingMode=modeGenerator._create_mode(bias, 0, 5)
+	else:
+		firingMode=modeGenerator._create_mode(0, 0, 5)
 	_update_ranged_target()
 
 func _physics_process(_delta):
