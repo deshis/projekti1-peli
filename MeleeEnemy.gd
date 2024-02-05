@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 450.0
+@export var SPEED = 500.0
 
 @onready var target = get_node("/root/Main/Player")
 @onready var navAgent = get_node("NavigationAgent2D")
@@ -31,7 +31,7 @@ func _ready():
 func _physics_process(_delta):
 	if(global_position.distance_to(target.global_position)>=threshold&&!cooldownActive):
 		var direction = to_local(navAgent.get_next_path_position()).normalized()
-		navAgent.set_velocity(direction)
+		navAgent.set_velocity(direction*SPEED)
 	else: 
 		navAgent.set_velocity(Vector2(0,0))
 
@@ -42,7 +42,7 @@ func _on_timer_timeout(): #refresh target
 		_update_target()
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
-	velocity = safe_velocity*SPEED
+	velocity = safe_velocity
 	move_and_slide()
 
 

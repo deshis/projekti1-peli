@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 350.0
+@export var SPEED = 400.0
 
 @onready var target = get_node("/root/Main/Player")
 @onready var ray = get_node("/root/Main/Player/EnemyPathfindingRaycast")
@@ -39,7 +39,7 @@ func _ready():
 func _physics_process(_delta):
 	if(!cooldownActive):
 		var direction = to_local(navAgent.get_next_path_position()).normalized()
-		navAgent.set_velocity(direction)
+		navAgent.set_velocity(direction*SPEED)
 	else: 
 		navAgent.set_velocity(Vector2(0,0))
 
@@ -50,7 +50,7 @@ func _on_timer_timeout(): #refresh target
 		navAgent.target_position=rangedEnemyTarget
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
-	velocity = safe_velocity * SPEED
+	velocity = safe_velocity
 	move_and_slide()
 
 func _shoot():
