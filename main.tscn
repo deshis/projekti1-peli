@@ -86,6 +86,10 @@ autostart = true
 
 [node name="SpawnTimer" type="Timer" parent="Player/GameDirector"]
 
+[node name="DifficultyTimer" type="Timer" parent="Player/GameDirector"]
+wait_time = 60.0
+autostart = true
+
 [node name="HUD" parent="." instance=ExtResource("3_chuea")]
 process_mode = 3
 
@@ -192,3 +196,4 @@ script = ExtResource("8_lgtmv")
 
 [connection signal="timeout" from="Player/GameDirector/MoneyTimer" to="Player/GameDirector" method="_on_money_timer_timeout"]
 [connection signal="timeout" from="Player/GameDirector/SpawnTimer" to="Player/GameDirector" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Player/GameDirector/DifficultyTimer" to="Player/GameDirector" method="_on_difficulty_timer_timeout"]
