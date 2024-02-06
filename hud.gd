@@ -34,11 +34,13 @@ func _open_inventory(itempickup):
 
 
 func _close_inventory():
+	for i in get_children():
+		if(i.get_class()=="Panel"):
+			i.queue_free()
 	item=null
-	get_child(4).queue_free()
 	for i in get_child_count():
 		get_child(i).set_visible(true)
-	isInventoryOpen=false	
+	isInventoryOpen=false
 	get_tree().paused = false
 
 func _get_item():

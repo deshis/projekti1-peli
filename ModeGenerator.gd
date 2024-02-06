@@ -35,7 +35,7 @@ extends Node
 
 @export var laserFirerate = 1
 @export var laserSize = 0.8
-@export var laserDamage = 5
+@export var laserDamage = 10
 
 var rng = RandomNumberGenerator.new()
 

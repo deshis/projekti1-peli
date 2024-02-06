@@ -2,12 +2,15 @@ extends Panel
 
 var mode
 var item
-@onready var textBox=get_child(0).get_child(2).get_child(0).get_child(1).get_child(0)
-@onready var textureBox=get_child(0).get_child(2).get_child(0).get_child(0)
-@onready var player = get_node("/root/Main/Player/PlayerProjectileSpawner") 
 
-@onready var currentModes=get_child(0).get_child(0)
-@onready var Descriptions=get_child(0).get_child(1)
+@onready var textBox=get_node("InventorySplitter/NewMode/VBoxContainer/NewModeTextMargin/RichTextLabel")
+@onready var textureBox=get_node("InventorySplitter/NewMode/VBoxContainer/NewModeTexture")
+@onready var player = get_node("/root/Main/Player/PlayerProjectileSpawner") 
+@onready var currentModes=get_node("InventorySplitter/CurrentModes")
+@onready var Descriptions=get_node("InventorySplitter/Descriptions")
+@onready var newMode = get_node("InventorySplitter/NewMode")
+@onready var pauseMenu = get_node("InventorySplitter/PauseMenuButtons")
+@onready var HUD = get_parent()
 
 var selectedModeContainer
 
@@ -22,17 +25,17 @@ func _ready():
 	selectedIndex = 0
 	if(!mode): #pause menu
 		paused = true
-		get_child(0).get_child(2).set_process(false)
-		get_child(0).get_child(2).visible=false
+		newMode.set_process(false)
+		newMode.visible=false
 		
-		get_child(0).get_child(3).set_process(true)
-		get_child(0).get_child(3).visible=true
+		pauseMenu.set_process(true)
+		pauseMenu.visible=true
 		
 		_highlightPauseMenu(0)
 	else: #pick up new mode
-		get_child(0).get_child(2).set_process(true)
-		get_child(0).get_child(3).set_process(false)
-		get_child(0).get_child(3).visible=false
+		newMode.set_process(true)
+		pauseMenu.set_process(false)
+		pauseMenu.visible=false
 		textureBox.texture=load("res://sprites/"+mode[0]+".png")
 		textBox.push_font_size(24)
 		textBox.append_text("[center]")
@@ -68,8 +71,8 @@ func _process(_delta):
 			_highlight(selectedIndex)
 		if(Input.is_action_just_pressed("accept")):
 			player._swap_mode(mode, selectedIndex)
-			get_parent()._close_inventory()
-			get_parent().get_child(3).get_child(0)._update_firing_mode_ui()
+			HUD._close_inventory()
+			HUD.get_node("FiringQueueMargin/FiringQueueContainer")._update_firing_mode_ui()
 			item.queue_free()
 	elif(paused): #pause menu
 		if(Input.is_action_just_pressed("UI_up")):
@@ -86,7 +89,7 @@ func _process(_delta):
 			_highlightPauseMenu(selectedIndex)
 		if(Input.is_action_just_pressed("accept")):
 			if(selectedIndex==0): #close the menu and continue game
-				get_parent()._close_inventory() 
+				HUD._close_inventory() 
 			elif(selectedIndex==1): #quit the game
 				get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 				get_tree().quit()
@@ -94,15 +97,16 @@ func _process(_delta):
 
 func _highlight(index):
 	for i in currentModes.get_children().size():
+		var panel = currentModes.get_child(i).get_node("Panel")
 		if(i==index):
-			currentModes.get_child(i).get_child(1).set_visible(true)
+			panel.set_visible(true)
 		else:
-			currentModes.get_child(i).get_child(1).set_visible(false)
-
+			panel.set_visible(false)
 
 func _highlightPauseMenu(index):
-	for i in range(0,get_child(0).get_child(3).get_children().size()):
+	var buttons = get_node("InventorySplitter/PauseMenuButtons")
+	for i in range(0,buttons.get_children().size()):
 		if(i==index):
-			get_child(0).get_child(3).get_child(i).get_child(2).set_visible(true)
+			buttons.get_child(i).get_node("SelectedPanel").set_visible(true)
 		else:
-			get_child(0).get_child(3).get_child(i).get_child(2).set_visible(false)
+			buttons.get_child(i).get_node("SelectedPanel").set_visible(false)
