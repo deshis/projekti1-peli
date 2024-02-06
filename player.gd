@@ -34,9 +34,8 @@ func _physics_process(_delta):
 	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_direction * currentSpeed
 	move_and_slide()
-	
-	
-	
+
+
 func _take_damage(dmg):
 	currentHealth-=dmg
 	update_health_ui()
@@ -46,8 +45,9 @@ func _take_damage(dmg):
 func _game_over():
 	currentHealth=0
 	update_health_ui()
-	queue_free()
-	
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	get_tree().quit()
+
 func get_health():
 	return currentHealth
 	

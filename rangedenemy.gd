@@ -36,9 +36,9 @@ var budget
 
 func _ready():
 	if(budget):
-		SPEED=SPEED+SPEED*budget/100
-		maxHealth=maxHealth+maxHealth*budget/100
-		bias=budget/100
+		SPEED=SPEED+SPEED*budget/50
+		maxHealth=maxHealth+maxHealth*budget/50
+		bias=budget/50
 	currentHealth=maxHealth
 	healthBar.max_value = maxHealth
 	healthBar.value = currentHealth

@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var crosshair = get_node("Crosshair")
-@export var crosshairDistance = 20000
+@export var crosshairDistance = 200
 
 @export var maxModeAmount=5
 var firingModes = []
@@ -31,7 +31,7 @@ func _ready():
 		firingModes.append(firingMode)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	crosshair.set_position(Vector2.ZERO) #if not aiming, the crosshair is hidden under the player
 	aimDirection = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	
@@ -39,7 +39,7 @@ func _process(delta):
 	if(!Input.is_action_pressed("sprint")):	#disable aiming while sprinting
 		if(aimDirection.length()>0):
 			aimDirection=aimDirection.normalized() 
-			crosshair.set_position(aimDirection * delta * crosshairDistance)  #change crosshair position
+			crosshair.set_position(aimDirection * crosshairDistance)  #change crosshair position
 			_shoot()
 
 
