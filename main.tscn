@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=20 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
+[ext_resource type="PackedScene" uid="uid://cm4ypsw2vjmqy" path="res://loadingUI.tscn" id="1_cnnkx"]
 [ext_resource type="Script" path="res://WorldMap.gd" id="2_i6627"]
 [ext_resource type="PackedScene" uid="uid://kwnhyg72qcxf" path="res://hud.tscn" id="3_chuea"]
 [ext_resource type="Script" path="res://FiringQueueContainer.gd" id="6_7n4u1"]
@@ -27,7 +28,7 @@ texture = ExtResource("17_wpvxt")
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 
 [sub_resource type="TileSet" id="TileSet_q0wc0"]
 physics_layer_0/collision_layer = 16
@@ -63,7 +64,10 @@ func _process(_delta):
 
 [node name="Main" type="Node"]
 
+[node name="LoadingUi" parent="." instance=ExtResource("1_cnnkx")]
+
 [node name="TileMap" type="TileMap" parent="."]
+process_mode = 3
 z_index = -10
 tile_set = SubResource("TileSet_q0wc0")
 format = 2
@@ -108,8 +112,9 @@ show_percentage = false
 script = ExtResource("6_07ov0")
 
 [node name="HealthBarMargin" type="MarginContainer" parent="HUD"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 25.0
+offset_right = 550.0
+offset_bottom = 60.0
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 
