@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var moneyTimer = get_node("MoneyTimer")
 @onready var spawnTimer = get_node("SpawnTimer")
-@onready var screen_size = get_viewport_rect().size
+@onready var screen_size = get_viewport().get_visible_rect().size
 @onready var tileMap = get_node("/root/Main/TileMap")
 
 @export var minSpawnTime = 10
@@ -12,14 +12,14 @@ var meleeEnemy = preload("res://MeleeEnemy.tscn")
 var rangedEnemy = preload("res://RangedEnemy.tscn")
 
 var difficultyLevel = 1
-var credits = 0.0
+var credits = 10.0
 
 var rng = RandomNumberGenerator.new()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawnTimer.start(rng.randf_range(minSpawnTime, maxSpawnTime))
+	spawnTimer.start(rng.randf_range(0, minSpawnTime))
 
 
 #The difficulty level increases the director's budget, amount of enemies spawned and the bias of randomly generated modes
@@ -44,7 +44,7 @@ func _on_spawn_timer_timeout():
 	
 	#try to find a valid spawn location off screen up to 3 times. if a valid location is not found, spawn on top of player
 	for i in 3:
-		spawnLocation = global_position+Vector2(rng.randf_range(-1,1), rng.randf_range(-1,1)).normalized()*screen_size.x/2
+		spawnLocation = global_position+Vector2(rng.randf_range(-1,1), rng.randf_range(-1,1)).normalized()*screen_size.x/4
 		var spawnTile = tileMap.get_cell_tile_data(0, tileMap.local_to_map(spawnLocation))
 		if(spawnTile):
 			if(spawnTile.get_collision_polygons_count(0)==0):

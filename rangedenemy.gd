@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 400.0
+@export var SPEED = 170.0
 
 @onready var target = get_node("/root/Main/Player")
 @onready var ray = get_node("/root/Main/Player/EnemyPathfindingRaycast")
@@ -11,8 +11,8 @@ extends CharacterBody2D
 
 var cooldownActive = false
 var targetOffset = Vector2(0,0)
-@export var shootingDistance = 400
-@export var threshold = 50
+@export var shootingDistance = 100
+@export var threshold = 25
 @export var cooldown = 1.5
 
 
@@ -36,8 +36,8 @@ var budget
 
 func _ready():
 	if(budget):
-		SPEED=SPEED+SPEED*budget/50
-		maxHealth=maxHealth+maxHealth*budget/50
+		SPEED=SPEED+SPEED*budget/100
+		maxHealth=maxHealth+maxHealth*budget/100
 		bias=budget/50
 	currentHealth=maxHealth
 	healthBar.max_value = maxHealth

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 500.0
+@export var SPEED = 220.0
 
 @onready var target = get_node("/root/Main/Player")
 @onready var navAgent = get_node("NavigationAgent2D")
@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var healthBar = get_node("ProgressBar")
 
 var cooldownActive = false
-@export var threshold = 150
+@export var threshold = 50
 @export var cooldown = 1.5
 
 @export var damage = 10
@@ -26,9 +26,9 @@ var budget
 
 func _ready():
 	if(budget):
-		SPEED=SPEED+SPEED*budget/50
-		maxHealth=maxHealth+maxHealth*budget/50
-		damage=damage+damage*budget/50
+		SPEED=SPEED+SPEED*budget/100
+		maxHealth=maxHealth+maxHealth*budget/100
+		damage=damage+damage*budget/100
 	currentHealth=maxHealth
 	healthBar.max_value = maxHealth
 	healthBar.value = currentHealth
@@ -58,12 +58,14 @@ func _attack():
 	var aimDirection = target.global_position-global_position
 	#aimDirection=aimDirection.normalized()
 	var instance = meleeHitbox.instantiate()
-	instance.position=global_position+aimDirection/1.25
+	instance.position=global_position+aimDirection/1.2
 	instance.set_damage(damage)
 	instance.get_node("AnimatedSprite2D").set_scale(Vector2(3, 3))
 	instance.get_node("CollisionShape2D").set_scale(Vector2(3, 3))
 	instance.look_at(target.global_position)
-	await get_tree().create_timer(0.1).timeout #pause to give player time to dodge
+	await get_tree().create_timer(0.15).timeout #pause to give player time to dodge
+	instance.get_node("AnimatedSprite2D").set_scale(Vector2(1, 1))
+	instance.get_node("CollisionShape2D").set_scale(Vector2(1, 1))
 	get_tree().current_scene.add_child(instance)
 	
 

@@ -71,8 +71,6 @@ script = ExtResource("2_i6627")
 
 [node name="Player" parent="." instance=ExtResource("1_66f0x")]
 scale = Vector2(0.3, 0.3)
-moveSpeed = 200
-sprintSpeed = 300
 currentHealth = 100
 
 [node name="GameDirector" type="Node2D" parent="Player"]

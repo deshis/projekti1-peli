@@ -14,8 +14,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vlwd"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_wlrxe"]
+radius = 16.0312
 
 [node name="MeleeHitbox" type="RigidBody2D"]
 collision_layer = 2
@@ -24,7 +24,8 @@ gravity_scale = 0.0
 script = ExtResource("1_vaeyu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.76837e-07, -4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_o2usr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_4vlwd")
+shape = SubResource("CircleShape2D_wlrxe")

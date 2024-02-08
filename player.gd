@@ -1,8 +1,8 @@
 extends CharacterBody2D
 signal PlayerHit
 
-@export var moveSpeed = 500
-@export var sprintSpeed = 750
+@export var moveSpeed = 200
+@export var sprintSpeed = 300
 var currentSpeed
 
 @export var maxHealth = 100

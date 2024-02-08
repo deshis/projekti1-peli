@@ -1,6 +1,6 @@
 extends TileMap
 
-@export var mapSize = 128
+@export var mapSize = 64
 @export var terrainChance = 0.025
 
 func _ready():
