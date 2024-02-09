@@ -1,6 +1,8 @@
 extends CharacterBody2D
 signal PlayerHit
 
+@onready var animatedSprite = get_node("AnimatedSprite2D")
+
 @export var moveSpeed = 200
 @export var sprintSpeed = 300
 var currentSpeed
@@ -18,7 +20,9 @@ var canTakeDamage = true
 
 var healCooldown=10.0
 var canRegen = true
-
+var moving
+var sprinting = false
+var moveAnimationDirection
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,12 +31,62 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	if(Input.is_action_pressed("sprint")):
+		sprinting=true
 		currentSpeed=sprintSpeed
 	else:
+		sprinting=false
 		currentSpeed=moveSpeed
+	
 	var input_direction = Vector2.ZERO
 	input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = input_direction * currentSpeed
+	
+	moving = true
+	
+	#movement animation stuff
+	var animationThreshold=0.35
+	if(input_direction.x>animationThreshold):
+		if(input_direction.y<-animationThreshold):
+			animatedSprite.play("move_up_right")
+			animatedSprite.set_flip_h(false)
+		elif(input_direction.y>animationThreshold):
+			animatedSprite.play("move_down_left")
+			animatedSprite.set_flip_h(true)
+		else:
+			animatedSprite.play("move_right")
+			animatedSprite.set_flip_h(false)
+	elif(input_direction.x<-animationThreshold):
+		if(input_direction.y<-animationThreshold):
+			animatedSprite.play("move_up_right")
+			animatedSprite.set_flip_h(true)
+		elif(input_direction.y>animationThreshold):
+			animatedSprite.play("move_down_left")
+			animatedSprite.set_flip_h(false)
+		else:
+			animatedSprite.play("move_left")
+			animatedSprite.set_flip_h(false)
+	elif(input_direction.y<-animationThreshold):
+		animatedSprite.play("move_up")
+		animatedSprite.set_flip_h(false)
+	elif(input_direction.y>animationThreshold):
+		animatedSprite.play("move_down")
+		animatedSprite.set_flip_h(false)
+	else:
+		moving=false
+	
+	
+	if(sprinting):
+		animatedSprite.set_speed_scale(1.5)
+	else:
+		animatedSprite.set_speed_scale(1.0)
+	if(!moving):
+		animatedSprite.set_speed_scale(0)
+	
+	
+	#prevent moving while animation not playing
+	if(moving):
+		velocity = input_direction * currentSpeed
+	else:
+		velocity=Vector2.ZERO
 	move_and_slide()
 
 
