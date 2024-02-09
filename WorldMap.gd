@@ -1,20 +1,27 @@
 extends TileMap
 
-@export var mapSize = 128 #must be divisible by 4
+@export var mapSize = 32 #must be divisible by 4
 
 @export var terrainChance = 0.025
 
 var rng = RandomNumberGenerator.new()
 @onready var loadingUI=get_node("../LoadingUi")	
+@onready var hud=get_node("../HUD")	
+@onready var player=get_node("../Player")	
 
 
 func _ready():
 	await Engine.get_main_loop().process_frame
+	hud.visible=false
+	player.visible=false
 	get_tree().paused = true
 	loadingUI.set_loading_bar_max_value(100)
 	await generate_world(position, mapSize)
 	loadingUI.queue_free()
+	hud.visible=true
+	player.visible=true
 	get_tree().paused = false
+
 
 
 func generate_world(pos, size):
@@ -37,7 +44,6 @@ func generate_world(pos, size):
 	generate_outer_walls(pos, size)
 	loadingUI.set_loading_bar_value(100)
 	await Engine.get_main_loop().process_frame
-
 
 
 func generate_chunk(pos, size):

@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://loadingUI.gd" id="1_qnlo2"]
 
 [node name="LoadingUi" type="Control"]
-z_index = 99
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_qnlo2")
