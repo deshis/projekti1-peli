@@ -75,6 +75,8 @@ script = ExtResource("2_i6627")
 
 [node name="Player" parent="." instance=ExtResource("1_66f0x")]
 scale = Vector2(0.3, 0.3)
+moveSpeed = 150
+sprintSpeed = 200
 currentHealth = 100
 
 [node name="GameDirector" type="Node2D" parent="Player"]
@@ -202,14 +204,14 @@ script = SubResource("GDScript_h37l6")
 
 [node name="ModeGenerator" type="Node" parent="."]
 script = ExtResource("8_lgtmv")
-singleSpeed = 400
-tripleSpeed = 400
+singleSpeed = 300
+tripleSpeed = 300
 tripleSize = 0.25
-blastSpeed = 400
+blastSpeed = 300
 blastSize = 0.3
-circleSpeed = 400
-burstSpeed = 400
-spraySpeed = 400
+circleSpeed = 300
+burstSpeed = 300
+spraySpeed = 300
 
 [connection signal="timeout" from="Player/GameDirector/MoneyTimer" to="Player/GameDirector" method="_on_money_timer_timeout"]
 [connection signal="timeout" from="Player/GameDirector/SpawnTimer" to="Player/GameDirector" method="_on_spawn_timer_timeout"]

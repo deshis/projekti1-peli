@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 220.0
+@export var SPEED = 160.0
 
 @onready var target = get_node("/root/Main/Player")
 @onready var navAgent = get_node("NavigationAgent2D")

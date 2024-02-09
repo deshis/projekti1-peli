@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 170.0
+@export var SPEED = 130.0
 
 @onready var target = get_node("/root/Main/Player")
 @onready var ray = get_node("/root/Main/Player/EnemyPathfindingRaycast")
