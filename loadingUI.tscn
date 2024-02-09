@@ -8,7 +8,7 @@ anchors_preset = 0
 script = ExtResource("1_qnlo2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(658, 370)
+custom_minimum_size = Vector2(493, 277)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,9 +43,9 @@ anchor_bottom = 1.0
 offset_top = -77.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
 
 [node name="ProgressBar" type="ProgressBar" parent="ColorRect/MarginContainer"]
 layout_mode = 2
