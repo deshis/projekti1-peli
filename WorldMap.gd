@@ -16,10 +16,12 @@ func _ready():
 	player.visible=false
 	get_tree().paused = true
 	loadingUI.set_loading_bar_max_value(100)
+	player.get_node("PlayerCamera").set_zoom(Vector2(1,1))
 	await generate_world(position, mapSize)
 	loadingUI.queue_free()
 	hud.visible=true
 	player.visible=true
+	player.get_node("PlayerCamera").set_zoom(Vector2(4,4))
 	get_tree().paused = false
 
 
