@@ -1,18 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://dxta58xb1b3wk"]
+[gd_scene load_steps=19 format=3 uid="uid://dxta58xb1b3wk"]
 
 [ext_resource type="Texture2D" uid="uid://c3b6in3ku53gq" path="res://sprites/icon.svg" id="1_omept"]
 [ext_resource type="Script" path="res://player.gd" id="1_xpekm"]
 [ext_resource type="Script" path="res://PlayerProjectileSpawner.gd" id="3_w0cgv"]
 [ext_resource type="Texture2D" uid="uid://d1c5t3ww2nv74" path="res://sprites/crosshair.png" id="4_kt8dq"]
-[ext_resource type="Texture2D" uid="uid://b0llai6q4i4v" path="res://sprites/player/movement/move_up_right3.png" id="6_bhsca"]
-[ext_resource type="Texture2D" uid="uid://dgypcpafkbudj" path="res://sprites/player/movement/move_right_3.png" id="6_t0qv2"]
+[ext_resource type="Texture2D" uid="uid://citljp7e2i8tb" path="res://sprites/player/movement/move_up_right3.png" id="6_bhsca"]
+[ext_resource type="Texture2D" uid="uid://be6lf7ov3x74s" path="res://sprites/player/movement/move_right_3.png" id="6_t0qv2"]
 [ext_resource type="Texture2D" uid="uid://bt4mvkv2sx5gv" path="res://sprites/player/movement/move_up_1.png" id="6_x3ve2"]
 [ext_resource type="Texture2D" uid="uid://cxq4dyft63j4d" path="res://sprites/player/movement/move_up_2.png" id="7_3r7ga"]
-[ext_resource type="Texture2D" uid="uid://cu0argyv5a6j8" path="res://sprites/player/movement/move_up_right2.png" id="7_xhbje"]
-[ext_resource type="Texture2D" uid="uid://d2qrkic32ybqr" path="res://sprites/player/movement/move_right_2.png" id="7_xwajs"]
-[ext_resource type="Texture2D" uid="uid://b8ylp5fwnmp7t" path="res://sprites/player/movement/move_up_right1.png" id="8_cey6b"]
-[ext_resource type="Texture2D" uid="uid://dgt5nen5wjjyh" path="res://sprites/player/movement/move_right_1.png" id="8_l00ck"]
+[ext_resource type="Texture2D" uid="uid://8iy5fof5ltds" path="res://sprites/player/movement/move_up_right2.png" id="7_xhbje"]
+[ext_resource type="Texture2D" uid="uid://dysq33fql6dkc" path="res://sprites/player/movement/move_right_2.png" id="7_xwajs"]
+[ext_resource type="Texture2D" uid="uid://coc4kduwd047c" path="res://sprites/player/movement/move_up_right1.png" id="8_cey6b"]
+[ext_resource type="Texture2D" uid="uid://b1hm063xc4c7l" path="res://sprites/player/movement/move_right_1.png" id="8_l00ck"]
 [ext_resource type="Texture2D" uid="uid://cq6p6qwtdydx6" path="res://sprites/player/movement/move_up_3.png" id="8_qg346"]
+[ext_resource type="Texture2D" uid="uid://cagi6ipw78wgb" path="res://sprites/player/aiming/aim_up_1.png" id="14_86nb4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p3ylv"]
 animations = [{
@@ -134,6 +135,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_wnxy8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_86nb4")
+}],
+"loop": true,
+"name": &"aim_up",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 16
 script = ExtResource("1_xpekm")
@@ -142,7 +154,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_p3ylv")
-animation = &"move_up_right"
+animation = &"move_down_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_08cib")
@@ -161,6 +173,13 @@ one_shot = true
 
 [node name="LaserRayCaster" type="RayCast2D" parent="PlayerProjectileSpawner"]
 collision_mask = 16
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerProjectileSpawner"]
+z_index = 3
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_wnxy8")
+animation = &"aim_up"
+offset = Vector2(0, -27)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
