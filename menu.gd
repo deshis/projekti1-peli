@@ -3,8 +3,8 @@ extends Control
 var selectedIndex=0
 
 func _ready():
+	get_tree().paused = false
 	_highlight(0)
-
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("UI_up")):

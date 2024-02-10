@@ -88,11 +88,10 @@ func _process(_delta):
 				selectedIndex+=1
 			_highlightPauseMenu(selectedIndex)
 		if(Input.is_action_just_pressed("accept")):
-			if(selectedIndex==0): #close the menu and continue game
+			if(selectedIndex==0): #continue game
 				HUD._close_inventory() 
-			elif(selectedIndex==1): #quit the game
-				get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
-				get_tree().quit()
+			elif(selectedIndex==1): #main menu
+					get_tree().change_scene_to_file("res://menu.tscn")
 
 
 func _highlight(index):

@@ -264,7 +264,8 @@ theme_override_constants/margin_bottom = 100
 [node name="RichTextLabel" type="RichTextLabel" parent="InventorySplitter/PauseMenuButtons/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 50
-text = " CONTINUE"
+bbcode_enabled = true
+text = "[center]CONTINUE[/center]"
 fit_content = true
 custom_effects = [SubResource("RichTextEffect_wwxiy")]
 
@@ -296,7 +297,8 @@ theme_override_constants/margin_bottom = 400
 [node name="RichTextLabel" type="RichTextLabel" parent="InventorySplitter/PauseMenuButtons/MarginContainer2"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 50
-text = " QUIT GAME"
+bbcode_enabled = true
+text = "[center]MAIN MENU[/center]"
 fit_content = true
 
 [node name="ButtonPromptMargin" type="MarginContainer" parent="InventorySplitter/PauseMenuButtons/MarginContainer2"]
