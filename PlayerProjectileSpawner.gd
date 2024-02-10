@@ -21,6 +21,10 @@ var laser = preload("res://player_laser.tscn")
 
 var rng = RandomNumberGenerator.new()
 
+var animationThreshold=0.35
+@onready var animatedSprite = get_node("AnimatedSprite2D")
+var animationPlaying = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	switchTimer.timeout.connect(_on_switch_timer_timeout)
@@ -41,9 +45,64 @@ func _process(_delta):
 			aimDirection=aimDirection.normalized() 
 			crosshair.set_position(aimDirection * crosshairDistance)  #change crosshair position
 			_shoot()
+	
+	#aiming animations
+	if(!animationPlaying):
+		if(aimDirection.x>animationThreshold):
+			if(aimDirection.y<-animationThreshold):
+				animatedSprite.play("aim_up_right")
+				animatedSprite.set_flip_h(false)
+			elif(aimDirection.y>animationThreshold):
+				animatedSprite.play("aim_down_right")
+				animatedSprite.set_flip_h(false)
+			else:
+				animatedSprite.play("aim_right")
+				animatedSprite.set_flip_h(false)
+		elif(aimDirection.x<-animationThreshold):
+			if(aimDirection.y<-animationThreshold):
+				animatedSprite.play("aim_up_right")
+				animatedSprite.set_flip_h(true)
+			elif(aimDirection.y>animationThreshold):
+				animatedSprite.play("aim_down_right")
+				animatedSprite.set_flip_h(true)
+			else:
+				animatedSprite.play("aim_right")
+				animatedSprite.set_flip_h(true)
+		elif(aimDirection.y<-animationThreshold):
+			animatedSprite.play("aim_up")
+			animatedSprite.set_flip_h(false)
+		elif(aimDirection.y>animationThreshold):
+			animatedSprite.play("aim_down")
+			animatedSprite.set_flip_h(false)
 
-
-
+func play_shoot_animation():
+	if(aimDirection.x>animationThreshold):
+		if(aimDirection.y<-animationThreshold):
+			animatedSprite.play("shoot_up_right")
+			animatedSprite.set_flip_h(false)
+		elif(aimDirection.y>animationThreshold):
+			animatedSprite.play("shoot_down_right")
+			animatedSprite.set_flip_h(false)
+		else:
+			animatedSprite.play("shoot_right")
+			animatedSprite.set_flip_h(false)
+	elif(aimDirection.x<-animationThreshold):
+		if(aimDirection.y<-animationThreshold):
+			animatedSprite.play("shoot_up_right")
+			animatedSprite.set_flip_h(true)
+		elif(aimDirection.y>animationThreshold):
+			animatedSprite.play("shoot_down_right")
+			animatedSprite.set_flip_h(true)
+		else:
+			animatedSprite.play("shoot_right")
+			animatedSprite.set_flip_h(true)
+	elif(aimDirection.y<-animationThreshold):
+		animatedSprite.play("shoot_up")
+		animatedSprite.set_flip_h(false)
+	elif(aimDirection.y>animationThreshold):
+		animatedSprite.play("shoot_down")
+		animatedSprite.set_flip_h(false)
+	animationPlaying=true
 
 
 func _shoot():
@@ -80,6 +139,7 @@ func _shoot():
 		if(type!="beam"):
 			shootTimer.start(firerate)
 			canShoot=false
+			play_shoot_animation()
 
 func _spawn_beam(damage,width):
 	var ray = _cast_ray_in_aim_direction()
@@ -153,3 +213,7 @@ func _get_current_firing_mode():
 
 func _swap_mode(mode, index):
 	firingModes[index]=mode
+
+
+func _on_animated_sprite_2d_animation_finished():
+	animationPlaying = false

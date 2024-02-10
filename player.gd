@@ -24,6 +24,8 @@ var moving
 var sprinting = false
 var moveAnimationDirection
 
+var animationThreshold=0.35
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -43,7 +45,6 @@ func _physics_process(_delta):
 	moving = true
 	
 	#movement animation stuff
-	var animationThreshold=0.35
 	if(input_direction.x>animationThreshold):
 		if(input_direction.y<-animationThreshold):
 			animatedSprite.play("move_up_right")
