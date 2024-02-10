@@ -8,7 +8,7 @@ anchors_preset = 0
 script = ExtResource("1_qnlo2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(493, 277)
+custom_minimum_size = Vector2(1972, 1108)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,6 +29,7 @@ offset_top = -11.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[center] Generating world... [/center]"
 fit_content = true
@@ -43,9 +44,10 @@ anchor_bottom = 1.0
 offset_top = -77.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
 
 [node name="ProgressBar" type="ProgressBar" parent="ColorRect/MarginContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32

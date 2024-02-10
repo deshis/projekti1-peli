@@ -7,7 +7,7 @@ func _ready():
 
 func _process(_delta):
 	if(Input.is_anything_pressed()):
-		controller = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent()._get_controller()
+		controller = get_node("../../../../../..")._get_controller()
 		_updatePrompt()
 
 func _updatePrompt():
