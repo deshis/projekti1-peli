@@ -1,15 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://7nr24eoqijq"]
+[gd_scene load_steps=17 format=3 uid="uid://7nr24eoqijq"]
 
 [ext_resource type="Script" path="res://rangedenemy.gd" id="1_d5gho"]
 [ext_resource type="Texture2D" uid="uid://d011iir0mnwkq" path="res://sprites/rangedEnemy/attack_up_right_1.png" id="2_55md1"]
+[ext_resource type="Texture2D" uid="uid://bf82ch6yowxmf" path="res://sprites/rangedEnemy/attack_down_left_1.png" id="2_jjfro"]
 [ext_resource type="Texture2D" uid="uid://b8lgwchlla41g" path="res://sprites/rangedEnemy/attack_up_right_2.png" id="3_h5sjf"]
+[ext_resource type="Texture2D" uid="uid://d3wwkr6kng01x" path="res://sprites/rangedEnemy/attack_down_left_2.png" id="3_o13mg"]
 [ext_resource type="Texture2D" uid="uid://cpo1thj18x5bj" path="res://sprites/rangedEnemy/move_up_right_1.png" id="4_x7wgx"]
 [ext_resource type="Texture2D" uid="uid://8mts6bw0nyg2" path="res://sprites/rangedEnemy/move_up_right_2.png" id="5_jaogy"]
+[ext_resource type="Texture2D" uid="uid://t7pnw6fcr1fe" path="res://sprites/rangedEnemy/move_down_left_1.png" id="6_cojc6"]
 [ext_resource type="Texture2D" uid="uid://ceiyawxa8exfw" path="res://sprites/rangedEnemy/move_up_right_3.png" id="6_yb4qw"]
+[ext_resource type="Texture2D" uid="uid://cirbkm4bgpnkl" path="res://sprites/rangedEnemy/move_down_left_2.png" id="7_woogw"]
+[ext_resource type="Texture2D" uid="uid://c081efjtxyb7s" path="res://sprites/rangedEnemy/move_down_left_3.png" id="8_cfxev"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rllpx"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jjfro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o13mg")
+}],
 "loop": false,
 "name": &"attack_down_left",
 "speed": 5.0
@@ -25,7 +36,16 @@ animations = [{
 "name": &"attack_up_right",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_cojc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_woogw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cfxev")
+}],
 "loop": true,
 "name": &"move_down_left",
 "speed": 15.0
@@ -70,8 +90,8 @@ script = ExtResource("1_d5gho")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_rllpx")
-animation = &"move_up_right"
-frame_progress = 0.569384
+animation = &"move_down_left"
+frame_progress = 0.942462
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_7oewa")

@@ -27,12 +27,17 @@ var projectile = preload("res://enemy_projectile.tscn")
 var firingMode
 var rng = RandomNumberGenerator.new()
 
-
 var bias
 
 var item = preload("res://item_pick_up.tscn")
 
 var budget
+
+var animationThreshold = 0
+@onready var animatedSprite = get_node("AnimatedSprite2D")
+var animDirection
+var animationPlaying = false
+
 
 func _ready():
 	if(budget):
@@ -54,6 +59,41 @@ func _physics_process(_delta):
 		navAgent.set_velocity(direction*SPEED)
 	else: 
 		navAgent.set_velocity(Vector2(0,0))
+	
+	
+	animDirection = velocity.normalized()
+	if(!animationPlaying):
+		if(animDirection.x>animationThreshold):
+			if(animDirection.y<-animationThreshold):
+				animatedSprite.play("move_up_right")
+				animatedSprite.set_flip_h(false)
+			elif(animDirection.y>animationThreshold):
+				animatedSprite.play("move_down_left")
+				animatedSprite.set_flip_h(true)
+		elif(animDirection.x<-animationThreshold):
+			if(animDirection.y<-animationThreshold):
+				animatedSprite.play("move_up_right")
+				animatedSprite.set_flip_h(true)
+			elif(animDirection.y>animationThreshold):
+				animatedSprite.play("move_down_left")
+				animatedSprite.set_flip_h(false)
+
+func play_attack_animation(dir):
+	if(dir.x>animationThreshold):
+		if(dir.y<-animationThreshold):
+			animatedSprite.play("attack_up_right")
+			animatedSprite.set_flip_h(false)
+		elif(dir.y>animationThreshold):
+			animatedSprite.play("attack_down_left")
+			animatedSprite.set_flip_h(true)
+	elif(dir.x<-animationThreshold):
+		if(dir.y<-animationThreshold):
+			animatedSprite.play("attack_up_right")
+			animatedSprite.set_flip_h(true)
+		elif(dir.y>animationThreshold):
+			animatedSprite.play("attack_down_left")
+			animatedSprite.set_flip_h(false)
+	animationPlaying=true
 
 func _on_timer_timeout(): #refresh target
 	if(global_position.distance_to(rangedEnemyTarget)<=threshold&&!cooldownActive):
@@ -93,6 +133,7 @@ func _shoot():
 			_burst(aimDirection,damage,speed,size)
 		"spray":
 			_spray(aimDirection,damage,speed,size)
+	play_attack_animation(aimDirection.normalized())
 
 func _spawn_projectile(direction,damage,speed,size):
 	var instance = projectile.instantiate()
@@ -116,6 +157,7 @@ func _spray(direction,damage,speed,size):
 func _on_cooldown_timer_timeout():
 	_update_ranged_target()
 	cooldownActive = false
+	animationPlaying=false
 
 func _update_ranged_target():
 	await Engine.get_main_loop().process_frame
