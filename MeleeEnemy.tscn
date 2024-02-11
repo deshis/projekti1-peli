@@ -66,12 +66,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08l3f"]
-radius = 25.0
-height = 50.0
+radius = 16.6667
+height = 60.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4rpim"]
-radius = 25.0
-height = 50.0
+radius = 16.6667
+height = 60.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb2na"]
 bg_color = Color(0.462745, 0, 0.0941176, 1)
@@ -124,9 +124,9 @@ shape = SubResource("CapsuleShape2D_4rpim")
 [node name="ProgressBar" type="ProgressBar" parent="."]
 z_index = 1
 offset_left = -26.0
-offset_top = -37.0
+offset_top = -40.3333
 offset_right = 26.0
-offset_bottom = -28.0
+offset_bottom = -31.3333
 theme_override_styles/background = SubResource("StyleBoxFlat_cb2na")
 theme_override_styles/fill = SubResource("StyleBoxFlat_524it")
 show_percentage = false
