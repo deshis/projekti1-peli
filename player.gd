@@ -100,8 +100,8 @@ func _take_damage(dmg):
 func _game_over():
 	currentHealth=0
 	update_health_ui()
-	Global.timeAlive = get_node("../HUD/GameTimerMargin/GameTimer").get_text().get_slice("]", 1)
-	get_tree().change_scene_to_file("res://GameOver.tscn")
+	Global.timeAlive = get_node("/root/Main/HUD/GameTimerMargin/GameTimer").get_text().get_slice("]", 1)
+	get_tree().change_scene_to_file.bind("res://GameOver.tscn").call_deferred()
 
 func get_health():
 	return currentHealth

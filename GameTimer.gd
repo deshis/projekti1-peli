@@ -5,7 +5,7 @@ var minutes = 0
 var hours = 0
 
 func _on_timer_timeout():
-	var text = "[center]"
+	var timealive = "[center]"
 	seconds +=1
 	if(seconds>=60):
 		seconds=0
@@ -14,13 +14,13 @@ func _on_timer_timeout():
 			minutes=0
 			hours+=1
 	if(hours>=1):
-		text+=str(hours)
-		text+=":"
+		timealive+=str(hours)
+		timealive+=":"
 	if(minutes<10):
-		text+="0"
-	text+=str(minutes)
-	text+=":"
+		timealive+="0"
+	timealive+=str(minutes)
+	timealive+=":"
 	if(seconds<10):
-		text+="0"
-	text+=str(seconds)
-	set_text(text)
+		timealive+="0"
+	timealive+=str(seconds)
+	set_text(timealive)
