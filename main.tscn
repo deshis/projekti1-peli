@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=21 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
 [ext_resource type="PackedScene" uid="uid://cm4ypsw2vjmqy" path="res://loadingUI.tscn" id="1_cnnkx"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ujaui61aj1lg" path="res://sprites/single.png" id="6_r3hev"]
 [ext_resource type="Script" path="res://HealthBar.gd" id="7_tkodr"]
 [ext_resource type="Script" path="res://ModeGenerator.gd" id="8_lgtmv"]
+[ext_resource type="Script" path="res://GameTimer.gd" id="11_abxn5"]
 [ext_resource type="Script" path="res://GameDirector.gd" id="16_c003v"]
 [ext_resource type="Texture2D" uid="uid://dvy0m3nixef4" path="res://sprites/tiletest.png" id="17_wpvxt"]
 
@@ -65,6 +66,7 @@ func _process(_delta):
 [node name="Main" type="Node"]
 
 [node name="LoadingUi" parent="." instance=ExtResource("1_cnnkx")]
+visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 process_mode = 3
@@ -197,6 +199,27 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 texture = ExtResource("6_r3hev")
 
+[node name="GameTimerMargin" type="MarginContainer" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_right = 79.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="GameTimer" type="RichTextLabel" parent="HUD/GameTimerMargin"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]00:00"
+fit_content = true
+script = ExtResource("11_abxn5")
+
+[node name="Timer" type="Timer" parent="HUD/GameTimerMargin/GameTimer"]
+autostart = true
+
 [node name="SwitchTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
@@ -216,3 +239,4 @@ spraySpeed = 300
 [connection signal="timeout" from="Player/GameDirector/MoneyTimer" to="Player/GameDirector" method="_on_money_timer_timeout"]
 [connection signal="timeout" from="Player/GameDirector/SpawnTimer" to="Player/GameDirector" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Player/GameDirector/DifficultyTimer" to="Player/GameDirector" method="_on_difficulty_timer_timeout"]
+[connection signal="timeout" from="HUD/GameTimerMargin/GameTimer/Timer" to="HUD/GameTimerMargin/GameTimer" method="_on_timer_timeout"]

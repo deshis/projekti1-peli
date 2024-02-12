@@ -17,7 +17,7 @@ func _toggle_inventory():
 	if(!isInventoryOpen):
 		_open_inventory(null)
 	else:
-		if(!get_child(4).mode):
+		if(!get_child(5).mode):
 			_close_inventory()
 			
 func _open_inventory(itempickup):
