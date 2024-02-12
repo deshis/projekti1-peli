@@ -12,7 +12,7 @@ var meleeEnemy = preload("res://MeleeEnemy.tscn")
 var rangedEnemy = preload("res://RangedEnemy.tscn")
 
 var difficultyLevel = 1
-var credits = 10.0
+var credits = 0.0
 
 var rng = RandomNumberGenerator.new()
 
@@ -58,18 +58,30 @@ func _on_spawn_timer_timeout():
 	#the amount of enemies is randomized and the credits are split evenly among the spawned enemies
 	#for example, the director could spawn a few strong enemies or many weaker enemies
 	@warning_ignore("integer_division")
-	enemyAmount = rng.randi_range(1, 3+difficultyLevel/2)
+	enemyAmount = rng.randi_range(1, 2+difficultyLevel/2)
 	var budget = credits/enemyAmount
+	var chance
+	
+	#make mode drops more likely at start of game
+	if(difficultyLevel==1):
+		chance=0.3
+	elif(difficultyLevel==2):
+		chance=0.15
+	else:
+		chance=0.05
+	
 	while(credits>=1):
 		if(rng.randi_range(0,1)==1): #spawn melee enemy
 			var instance = meleeEnemy.instantiate()
 			instance.budget=budget
 			instance.position=spawnLocation
+			instance.itemDropChance = 1.0
 			get_tree().current_scene.add_child(instance)
 		else: #spawn ranged enemy
 			var instance = rangedEnemy.instantiate()
 			instance.budget=budget
 			instance.position=spawnLocation
+			instance.itemDropChance = 1.0
 			get_tree().current_scene.add_child(instance)
 		credits-=budget
 		await Engine.get_main_loop().process_frame #yield 1 frame to avoid lagspikes

@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
-@export var SPEED = 160.0
+@export var SPEED = 140.0
+@export var damage = 80
+@export var maxHealth = 40
+
 
 @onready var target = get_node("/root/Main/Player")
 @onready var navAgent = get_node("NavigationAgent2D")
@@ -11,9 +14,6 @@ var cooldownActive = false
 @export var threshold = 30
 @export var cooldown = 1.5
 
-@export var damage = 10
-
-@export var maxHealth = 50
 var currentHealth
 
 @export var itemDropChance = 0.05
@@ -32,9 +32,9 @@ var animationPlaying = false
 
 func _ready():
 	if(budget):
-		SPEED=SPEED+SPEED*budget/100
-		maxHealth=maxHealth+maxHealth*budget/100
-		damage=damage+damage*budget/100
+		SPEED=SPEED+SPEED*budget/50
+		maxHealth=maxHealth+maxHealth*budget/50
+		damage=damage+damage*budget/50
 	currentHealth=maxHealth
 	healthBar.max_value = maxHealth
 	healthBar.value = currentHealth
