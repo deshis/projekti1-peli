@@ -8,7 +8,7 @@ signal PlayerHit
 var currentSpeed
 
 @export var maxHealth = 100
-@export var currentHealth = 80
+@export var currentHealth = 100
 @onready var healthbar = get_node("/root/Main/HUD/HealthBarMargin/HealthBar")
 
 @onready var iFrameTimer = get_node("iFrameTimer")
@@ -100,8 +100,8 @@ func _take_damage(dmg):
 func _game_over():
 	currentHealth=0
 	update_health_ui()
-	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
-	get_tree().quit()
+	Global.timeAlive = get_node("../HUD/GameTimerMargin/GameTimer").get_text().get_slice("]", 1)
+	get_tree().change_scene_to_file("res://GameOver.tscn")
 
 func get_health():
 	return currentHealth

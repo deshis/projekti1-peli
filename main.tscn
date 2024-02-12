@@ -79,7 +79,6 @@ script = ExtResource("2_i6627")
 scale = Vector2(0.3, 0.3)
 moveSpeed = 150
 sprintSpeed = 200
-currentHealth = 100
 
 [node name="GameDirector" type="Node2D" parent="Player"]
 script = ExtResource("16_c003v")
@@ -218,6 +217,7 @@ fit_content = true
 script = ExtResource("11_abxn5")
 
 [node name="Timer" type="Timer" parent="HUD/GameTimerMargin/GameTimer"]
+process_mode = 1
 autostart = true
 
 [node name="SwitchTimer" type="Timer" parent="."]
