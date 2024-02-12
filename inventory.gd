@@ -47,9 +47,15 @@ func _ready():
 			textBox.append_text("FIRERATE: "+str(snapped(mode[2], 0.01))+"\n")
 		textBox.append_text("SIZE: "+str(snapped(mode[3],0.01))+"\n")
 		if(mode[4]==-1):
-			textBox.append_text("SPEED: N/A \n")
+			textBox.append_text("SPEED: N/A \n\n")
 		else:
-			textBox.append_text("SPEED: "+str(snapped(mode[4],1))+"\n")
+			textBox.append_text("SPEED: "+str(snapped(mode[4],1))+"\n\n")
+		if(mode[5]): #dot
+			textBox.append_text("DAMAGE OVER TIME\n")
+		if(mode[6]): #aoe
+			textBox.append_text("AREA OF EFFECT\n")
+		if(mode[7]): #selfheal
+			textBox.append_text("HEALING\n")
 			
 func _set_swapping(s):
 	swapping = s

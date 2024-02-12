@@ -1,14 +1,10 @@
 extends RigidBody2D
-signal ProjectileHit
 
 var damage
-@export var timeoutSeconds = 5.0
-
-var type = "projectile"
-
-var dot
-var aoe
-var heal
+var type = "aoe"
+var dot = false
+var aoe = false
+var heal = false
 
 func _get_type():
 	return type
@@ -24,21 +20,9 @@ func _ready():
 	#make collision detection work
 	set_contact_monitor(true)
 	set_max_contacts_reported(1)
-	
-	#delete projectile after 5 seconds
-	_despawn()
-
-func _despawn():
-	await get_tree().create_timer(timeoutSeconds).timeout
-	if(get_tree().paused): #dont remove while game is paused
-		_despawn()
-	else:
-		queue_free()
+	await Engine.get_main_loop().physics_frame
+	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
-
-
-func _on_body_entered(_body): #remove if collide with environment
-	queue_free()

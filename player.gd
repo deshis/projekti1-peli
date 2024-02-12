@@ -133,6 +133,10 @@ func _on_health_regen_timer_timeout():
 		currentHealth+=1
 		update_health_ui()
 
+func heal(amount):
+	if(currentHealth<maxHealth):
+		currentHealth+=amount
+		update_health_ui()
 
 func _on_health_regen_cooldown_timer_timeout():
 	canRegen=true

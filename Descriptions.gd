@@ -22,5 +22,10 @@ func _ready():
 			textBoxes[textIndex].append_text("SPEED: N/A \n")
 		else:
 			textBoxes[textIndex].append_text("SPEED: "+str(snapped(mode[4], 1))+"\n")
+		if(mode[5]): #dot
+			textBoxes[textIndex].append_text("DAMAGE OVER TIME: Continues to deal damage for 5 seconds after hitting an enemy\n")
+		if(mode[6]): #aoe
+			textBoxes[textIndex].append_text("AREA OF EFFECT: Deals damage to nearby enemies after hitting an enemy\n")
+		if(mode[7]): #selfheal
+			textBoxes[textIndex].append_text("HEALING: Heal for 20% of damage dealt after hitting an enemy\n")
 		textIndex+=1 
-	

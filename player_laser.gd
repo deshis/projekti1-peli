@@ -6,6 +6,10 @@ var type = "laser"
 
 @export var continuous = false
 
+var dot
+var aoe
+var heal
+
 func _get_type():
 	return type
 

@@ -37,6 +37,10 @@ var animationThreshold = 0
 var animDirection
 var animationPlaying = false
 
+@onready var dotTimer = get_node("DOTTimer")
+var damageOverTime = false
+
+@onready var aoe = preload("res://aoe.tscn")
 
 func _ready():
 	if(budget):
@@ -169,14 +173,35 @@ func _update_ranged_target():
 	else:
 		rangedEnemyTarget=target.global_position+direction
 
-
 func _on_enemy_hurt_box_body_entered(body):
 	#if collide with playerprojectile on layer, take damage and delete projectile.
 	if body.get_collision_layer()==4:
-		_take_damage(body.get_damage())
-		if(body._get_type()=="projectile"): #dont delete lasers
+		var dmg = body.get_damage()
+		if(body.heal):
+			get_node("/root/Main/Player").heal(dmg/5.0)
+		if(body.aoe):
+			dmg=dmg/2.0
+			var instance = aoe.instantiate()
+			instance.position=global_position
+			instance.set_damage(dmg)
+			get_tree().current_scene.call_deferred("add_child", instance)
+		if(body.dot):
+			_damage_over_time()
+		if(body._get_type()=="projectile"): #dont delete lasers or aoe
 			body.queue_free()
+			
+		_take_damage(dmg)
 
+func _damage_over_time():
+	damageOverTime=true
+	dotTimer.start(5.0)
+
+func _on_dot_timer_timeout():
+	damageOverTime = false
+
+func _on_dot_timer_2_timeout():
+	if(damageOverTime):
+		_take_damage(2)
 
 func _take_damage(dmg):
 	currentHealth-=dmg

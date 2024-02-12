@@ -75,13 +75,13 @@ func _on_spawn_timer_timeout():
 			var instance = meleeEnemy.instantiate()
 			instance.budget=budget
 			instance.position=spawnLocation
-			instance.itemDropChance = 1.0
+			instance.itemDropChance = chance
 			get_tree().current_scene.add_child(instance)
 		else: #spawn ranged enemy
 			var instance = rangedEnemy.instantiate()
 			instance.budget=budget
 			instance.position=spawnLocation
-			instance.itemDropChance = 1.0
+			instance.itemDropChance = chance
 			get_tree().current_scene.add_child(instance)
 		credits-=budget
 		await Engine.get_main_loop().process_frame #yield 1 frame to avoid lagspikes

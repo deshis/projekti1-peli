@@ -111,37 +111,39 @@ func _shoot():
 	var firerate = firingModes[currentFiringMode][2]
 	var size = firingModes[currentFiringMode][3]
 	var speed = firingModes[currentFiringMode][4]
-	
+	var dot = firingModes[currentFiringMode][5]
+	var aoe = firingModes[currentFiringMode][6]
+	var heal = firingModes[currentFiringMode][7]
 	
 	if(canShoot):
 		match type: 
 			"single":
-				_spawn_projectile(aimDirection,damage,speed,size)
+				_spawn_projectile(aimDirection,damage,speed,size, dot, aoe, heal)
 			"triple":
-				_spawn_projectile(aimDirection,damage,speed,size)
-				_spawn_projectile(aimDirection.rotated(deg_to_rad(7.5)),damage,speed,size)
-				_spawn_projectile(aimDirection.rotated(deg_to_rad(-7.5)),damage,speed,size)
+				_spawn_projectile(aimDirection,damage,speed,size, dot, aoe, heal)
+				_spawn_projectile(aimDirection.rotated(deg_to_rad(7.5)),damage,speed,size, dot, aoe, heal)
+				_spawn_projectile(aimDirection.rotated(deg_to_rad(-7.5)),damage,speed,size, dot, aoe, heal)
 			"blast":
 				for i in rng.randi_range(6,8):
-					_spawn_projectile(aimDirection.rotated(deg_to_rad(rng.randfn(0,5))),damage,speed*rng.randf_range(0.9,1.1),size*rng.randf_range(0.9,1.1))
+					_spawn_projectile(aimDirection.rotated(deg_to_rad(rng.randfn(0,5))),damage,speed*rng.randf_range(0.9,1.1),size*rng.randf_range(0.9,1.1), dot, aoe, heal)
 			"circle":
 				var circleAmount=16.0
 				for i in circleAmount:
-					_spawn_projectile(aimDirection.rotated(deg_to_rad(360/circleAmount*i)),damage,speed,size)
+					_spawn_projectile(aimDirection.rotated(deg_to_rad(360/circleAmount*i)),damage,speed,size, dot, aoe, heal)
 			"burst":
-				_burst(aimDirection,damage,speed,size)
+				_burst(aimDirection,damage,speed,size, dot, aoe, heal)
 			"spray":
-				_spray(aimDirection,damage,speed,size)
+				_spray(aimDirection,damage,speed,size, dot, aoe, heal)
 			"laser":
-				_spawn_laser(damage, size)
+				_spawn_laser(damage, size, dot, aoe, heal)
 			"beam":
-				_spawn_beam(damage, size)
+				_spawn_beam(damage, size, dot, aoe, heal)
 		if(type!="beam"):
 			shootTimer.start(firerate)
 			canShoot=false
 			play_shoot_animation()
 
-func _spawn_beam(damage,width):
+func _spawn_beam(damage,width, dot, aoe, heal):
 	var ray = _cast_ray_in_aim_direction()
 	var instance = laser.instantiate()
 	instance.position=global_position+ray/2
@@ -150,10 +152,13 @@ func _spawn_beam(damage,width):
 	instance.get_node("CollisionShape2D").set_scale(Vector2(ray.length()/32, width))
 	instance.look_at(global_position+ray)
 	instance.continuous=true
+	instance.dot=dot
+	instance.aoe=aoe
+	instance.heal=heal
 	get_tree().current_scene.add_child(instance)
 	
 
-func _spawn_laser(damage,width):
+func _spawn_laser(damage,width, dot, aoe, heal):
 	var ray = _cast_ray_in_aim_direction()
 	var instance = laser.instantiate()
 	instance.position=global_position+ray/2
@@ -161,25 +166,31 @@ func _spawn_laser(damage,width):
 	instance.get_node("AnimatedSprite2D").set_scale(Vector2(ray.length()/32, width))
 	instance.get_node("CollisionShape2D").set_scale(Vector2(ray.length()/32, width))
 	instance.look_at(global_position+ray)
+	instance.dot=dot
+	instance.aoe=aoe
+	instance.heal=heal
 	get_tree().current_scene.add_child(instance)
 
-func _spawn_projectile(direction,damage,speed,size):
+func _spawn_projectile(direction,damage,speed,size, dot, aoe, heal):
 	var instance = projectile.instantiate()
 	instance.position=global_position
 	instance.set_damage(damage)
 	instance.set_linear_velocity(direction*speed)
 	instance.get_node("AnimatedSprite2D").set_scale(Vector2(size, size))
 	instance.get_node("CollisionShape2D").set_scale(Vector2(size, size))
+	instance.dot=dot
+	instance.aoe=aoe
+	instance.heal=heal
 	get_tree().current_scene.add_child(instance)
 	
-func _burst(direction,damage,speed,size):
+func _burst(direction,damage,speed,size, dot, aoe, heal):
 	for i in rng.randi_range(3,5):
-		_spawn_projectile(direction,damage,speed,size)
+		_spawn_projectile(direction,damage,speed,size, dot, aoe, heal)
 		await get_tree().create_timer(0.05).timeout
 
-func _spray(direction,damage,speed,size):
+func _spray(direction,damage,speed,size, dot, aoe, heal):
 	for i in 5:
-		_spawn_projectile(direction.rotated(deg_to_rad(-20+10*i)),damage,speed,size)
+		_spawn_projectile(direction.rotated(deg_to_rad(-20+10*i)),damage,speed,size, dot, aoe, heal)
 		await get_tree().create_timer(0.05).timeout
 
 func _cast_ray_in_aim_direction():
