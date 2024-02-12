@@ -29,9 +29,9 @@ var animationPlaying = false
 func _ready():
 	switchTimer.timeout.connect(_on_switch_timer_timeout)
 	
-	#initialize random array of firing modes, for testing purposes
+	#initialize default firing modes at start of game
 	for i in maxModeAmount:
-		var firingMode=modeGenerator._create_mode(0)
+		var firingMode=modeGenerator._create_default_mode()
 		firingModes.append(firingMode)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

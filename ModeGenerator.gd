@@ -92,6 +92,15 @@ func _create_mode(bias: float=0.0, startIndex:int=0, endIndex:int=7):
 			firingMode.append(-1)
 			firingMode.append(beamSize*(snapped(randf_range(lower, upper), 0.01)+bias))
 			firingMode.append(-1)
+	return (firingMode)
 
+
+func _create_default_mode():
+	var firingMode=[]
+	firingMode.append("single")
+	firingMode.append(singleDamage)
+	firingMode.append(singleFirerate)
+	firingMode.append(singleSize)
+	firingMode.append(singleSpeed)
 	return (firingMode)
 
