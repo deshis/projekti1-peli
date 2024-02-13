@@ -2,7 +2,7 @@ extends TileMap
 
 @export var mapSize = 256 #must be divisible by 4
 
-@export var obstacleChance = 0.02
+@export var obstacleChance = 0.025
 
 @onready var dirtNoise = FastNoiseLite.new()
 @onready var mudNoise = FastNoiseLite.new()
@@ -28,36 +28,48 @@ func _ready():
 	loadingUI.set_loading_bar_max_value(100)
 	player.get_node("PlayerCamera").set_zoom(Vector2(1,1))
 	await generate_world(position, mapSize)
-	loadingUI.queue_free()
 	hud.visible=true
 	player.visible=true
 	player.get_node("PlayerCamera").set_zoom(Vector2(1,1))
 	get_tree().paused = false
+	loadingUI.queue_free()
 
 
 func generate_world(pos, size):
 	generate_terrain_chunk(pos+Vector2(-size*16,-size*16),size/2)
-	loadingUI.set_loading_bar_value(20)	
+	loadingUI.set_loading_bar_value(10)	
 	await Engine.get_main_loop().process_frame
 	
 	generate_terrain_chunk(pos+Vector2(-size*16,size*16),size/2)
-	loadingUI.set_loading_bar_value(40)
+	loadingUI.set_loading_bar_value(20)	
 	await Engine.get_main_loop().process_frame
 	
 	generate_terrain_chunk(pos+Vector2(size*16,-size*16),size/2)
-	loadingUI.set_loading_bar_value(60)
+	loadingUI.set_loading_bar_value(30)	
 	await Engine.get_main_loop().process_frame
 	
 	generate_terrain_chunk(pos+Vector2(size*16,size*16),size/2)
-	loadingUI.set_loading_bar_value(80)
+	loadingUI.set_loading_bar_value(40)	
 	await Engine.get_main_loop().process_frame
 	
-	generate_obstacles(pos, size)
-	loadingUI.set_loading_bar_value(95)
+	generate_obstacles(pos+Vector2(-size*16,-size*16),size/2)
+	loadingUI.set_loading_bar_value(50)	
+	await Engine.get_main_loop().process_frame
+	
+	generate_obstacles(pos+Vector2(-size*16,size*16),size/2)
+	loadingUI.set_loading_bar_value(60)	
+	await Engine.get_main_loop().process_frame
+	
+	generate_obstacles(pos+Vector2(size*16,-size*16),size/2)
+	loadingUI.set_loading_bar_value(70)	
+	await Engine.get_main_loop().process_frame
+	
+	generate_obstacles(pos+Vector2(size*16,size*16),size/2)
+	loadingUI.set_loading_bar_value(80)	
 	await Engine.get_main_loop().process_frame
 	
 	generate_outer_wall(pos, size)
-	loadingUI.set_loading_bar_value(95)
+	loadingUI.set_loading_bar_value(90)	
 	await Engine.get_main_loop().process_frame
 
 
@@ -85,17 +97,21 @@ func generate_obstacles(pos, size):
 	var cellPosYOffset = size/2
 	var tilePos = local_to_map(pos)
 	for x in range(size):
+		loadingUI.set_loading_bar_value(x)
 		var cellPosX = tilePos.x-cellPosXOffset+x
 		for y in range(size):
 			var cellPosY = tilePos.y-cellPosYOffset+y
 			#spawn an obstacle and mark as non-navigable
-			if(rng.randf_range(0,1)<=obstacleChance):
+			#prevent diagonals
+			if(rng.randf_range(0,1)<=obstacleChance and get_cell_atlas_coords(2, Vector2i(cellPosX-1, cellPosY-1))!=Vector2i(0,0) and get_cell_atlas_coords(2, Vector2i(cellPosX-1, cellPosY+1))!=Vector2i(0,0)):
 				set_cell(2, Vector2i(cellPosX, cellPosY), 2, Vector2i(0,0))
 				set_cell(0, Vector2i(cellPosX, cellPosY), 3, Vector2i(0,1))
 			else:
 				#if no obstacle, navigable
 				set_cell(0, Vector2i(cellPosX, cellPosY), 3, Vector2i(0,0))
-				
+
+
+
 func generate_outer_wall(pos, size):
 	var cellPosXOffset = size/2
 	var cellPosYOffset = size/2

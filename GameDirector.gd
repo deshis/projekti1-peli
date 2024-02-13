@@ -63,9 +63,9 @@ func _on_spawn_timer_timeout():
 	var chance
 	
 	#make mode drops more likely at start of game
-	if(difficultyLevel==1):
+	if(difficultyLevel<=2):
 		chance=0.3
-	elif(difficultyLevel==2):
+	elif(difficultyLevel<=4):
 		chance=0.15
 	else:
 		chance=0.05
