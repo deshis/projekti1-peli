@@ -280,7 +280,6 @@ animation = &"shoot_up_right"
 offset = Vector2(0, -27)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
 process_callback = 0
 position_smoothing_enabled = true
 

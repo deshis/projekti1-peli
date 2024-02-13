@@ -2,39 +2,39 @@ extends Node
 
 @export var singleSpeed = 800
 @export var singleFirerate = 0.4
-@export var singleSize = 0.3
+@export var singleSize = 1
 @export var singleDamage = 5
 
 @export var tripleSpeed = 800
 @export var tripleFirerate = 0.75
-@export var tripleSize = 0.2
+@export var tripleSize = 0.8
 @export var tripleDamage = 5
 
 @export var blastSpeed = 800
 @export var blastFirerate = 1.5
-@export var blastSize = 0.25
+@export var blastSize = 0.75
 @export var blastDamage = 3
 
 @export var circleSpeed = 1000
 @export var circleFirerate = 0.75
-@export var circleSize = 0.3
+@export var circleSize = 1
 @export var circleDamage = 5
 
 @export var burstSpeed = 800
 @export var burstFirerate = 1
-@export var burstSize = 0.3
+@export var burstSize = 1
 @export var burstDamage = 5
 
 @export var spraySpeed = 800
 @export var sprayFirerate = 1
-@export var spraySize = 0.3
+@export var spraySize = 1
 @export var sprayDamage = 5
 
-@export var beamSize = 0.2
+@export var beamSize = 1
 @export var beamDamage = 0.1 #low because it triggers every frame
 
 @export var laserFirerate = 1
-@export var laserSize = 0.2
+@export var laserSize = 1
 @export var laserDamage = 10
 
 var rng = RandomNumberGenerator.new()

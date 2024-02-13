@@ -110,7 +110,6 @@ func _attack():
 	instance.get_node("CollisionShape2D").set_scale(Vector2(3, 3))
 	instance.look_at(target.global_position)
 	await get_tree().create_timer(0.1).timeout #pause to give player time to dodge
-	instance.get_node("CollisionShape2D").set_scale(Vector2(1, 1))
 	get_tree().current_scene.add_child(instance)
 	play_attack_animation(aimDirection.normalized())
 

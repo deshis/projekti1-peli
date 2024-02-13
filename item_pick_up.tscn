@@ -27,15 +27,14 @@ directional_velocity_min = 0.0
 directional_velocity_max = 0.0
 directional_velocity_curve = SubResource("CurveXYZTexture_byeox")
 gravity = Vector3(0, 0, 0)
-scale_min = 0.1
-scale_max = 0.15
+scale_min = 0.3
+scale_max = 0.45
 scale_over_velocity_curve = SubResource("CurveTexture_1de55")
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_vf1hy"]
 frame_0/texture = ExtResource("9_3ubkd")
 
 [node name="ItemPickUp" type="Area2D"]
-scale = Vector2(0.3, 0.3)
 collision_layer = 64
 script = ExtResource("1_3l2r0")
 

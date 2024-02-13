@@ -1,41 +1,109 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=27 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
 [ext_resource type="PackedScene" uid="uid://cm4ypsw2vjmqy" path="res://loadingUI.tscn" id="1_cnnkx"]
 [ext_resource type="Script" path="res://WorldMap.gd" id="2_i6627"]
+[ext_resource type="Texture2D" uid="uid://c62t8mwoakd8i" path="res://sprites/tilemap_terrain.png" id="2_kaniq"]
 [ext_resource type="PackedScene" uid="uid://kwnhyg72qcxf" path="res://hud.tscn" id="3_chuea"]
+[ext_resource type="Texture2D" uid="uid://b42lawsyrfkqw" path="res://sprites/obstacles.png" id="3_lhqoq"]
+[ext_resource type="Texture2D" uid="uid://tuc4xrr1drgf" path="res://sprites/navmesh.png" id="4_0dwfg"]
 [ext_resource type="Script" path="res://FiringQueueContainer.gd" id="6_7n4u1"]
 [ext_resource type="Script" path="res://TimerBar.gd" id="6_07ov0"]
 [ext_resource type="Texture2D" uid="uid://ujaui61aj1lg" path="res://sprites/single.png" id="6_r3hev"]
 [ext_resource type="Script" path="res://HealthBar.gd" id="7_tkodr"]
 [ext_resource type="Script" path="res://ModeGenerator.gd" id="8_lgtmv"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="11_abxn5"]
+[ext_resource type="PackedScene" uid="uid://bpir8wlvqw8eo" path="res://MeleeEnemy.tscn" id="14_hhujl"]
+[ext_resource type="PackedScene" uid="uid://7nr24eoqijq" path="res://RangedEnemy.tscn" id="16_1im5l"]
 [ext_resource type="Script" path="res://GameDirector.gd" id="16_c003v"]
-[ext_resource type="Texture2D" uid="uid://dvy0m3nixef4" path="res://sprites/tiletest.png" id="17_wpvxt"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_gi75e"]
-vertices = PackedVector2Array(8, -7, 8, 7, 7, 8, -7, 8, -8, 7, -8, -7, -7, -8, 7, -8)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-6.8125, -8, -8, -6.875, -8, 6.75, -6.9375, 8, 6.8125, 8, 8, 7, 8, -6.625, 6.9375, -8)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 0.0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_41eft"]
-texture = ExtResource("17_wpvxt")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t52rp"]
+resource_name = "terrain"
+texture = ExtResource("2_kaniq")
+texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gi75e")
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+3:3/0 = 0
+3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xr3q0"]
+texture = ExtResource("3_lhqoq")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2l837"]
+vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6puct"]
+texture = ExtResource("4_0dwfg")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_2l837")
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32, -8, -32)
 
 [sub_resource type="TileSet" id="TileSet_q0wc0"]
+tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 0
 navigation_layer_0/layers = 1
-sources/1 = SubResource("TileSetAtlasSource_41eft")
+sources/1 = SubResource("TileSetAtlasSource_t52rp")
+sources/2 = SubResource("TileSetAtlasSource_xr3q0")
+sources/3 = SubResource("TileSetAtlasSource_6puct")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb0wd"]
 bg_color = Color(0.188235, 0.184314, 0.176471, 1)
@@ -73,12 +141,16 @@ process_mode = 3
 z_index = -10
 tile_set = SubResource("TileSet_q0wc0")
 format = 2
+layer_0/name = "navmesh"
+layer_1/name = "terrain"
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "obstacles"
+layer_2/tile_data = PackedInt32Array()
 script = ExtResource("2_i6627")
 
 [node name="Player" parent="." instance=ExtResource("1_66f0x")]
-scale = Vector2(0.3, 0.3)
-moveSpeed = 150
-sprintSpeed = 200
+moveSpeed = 500
+sprintSpeed = 700
 
 [node name="GameDirector" type="Node2D" parent="Player"]
 script = ExtResource("16_c003v")
@@ -227,14 +299,10 @@ script = SubResource("GDScript_h37l6")
 
 [node name="ModeGenerator" type="Node" parent="."]
 script = ExtResource("8_lgtmv")
-singleSpeed = 300
-tripleSpeed = 300
-tripleSize = 0.25
-blastSpeed = 300
-blastSize = 0.3
-circleSpeed = 300
-burstSpeed = 300
-spraySpeed = 300
+
+[node name="MeleeEnemy" parent="." instance=ExtResource("14_hhujl")]
+
+[node name="RangedEnemy" parent="." instance=ExtResource("16_1im5l")]
 
 [connection signal="timeout" from="Player/GameDirector/MoneyTimer" to="Player/GameDirector" method="_on_money_timer_timeout"]
 [connection signal="timeout" from="Player/GameDirector/SpawnTimer" to="Player/GameDirector" method="_on_spawn_timer_timeout"]
