@@ -188,8 +188,8 @@ layer_2/tile_data = PackedInt32Array()
 script = ExtResource("2_i6627")
 
 [node name="Player" parent="." instance=ExtResource("1_66f0x")]
-moveSpeed = 500
-sprintSpeed = 700
+moveSpeed = 400
+sprintSpeed = 550
 
 [node name="GameDirector" type="Node2D" parent="Player"]
 script = ExtResource("16_c003v")

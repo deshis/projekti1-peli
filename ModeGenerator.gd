@@ -1,33 +1,33 @@
 extends Node
 
-@export var singleSpeed = 800
+@export var singleSpeed = 600
 @export var singleFirerate = 0.4
-@export var singleSize = 1
+@export var singleSize = 0.8
 @export var singleDamage = 5
 
-@export var tripleSpeed = 800
+@export var tripleSpeed = 600
 @export var tripleFirerate = 0.75
-@export var tripleSize = 0.8
+@export var tripleSize = 0.65
 @export var tripleDamage = 5
 
-@export var blastSpeed = 800
+@export var blastSpeed = 600
 @export var blastFirerate = 1.5
-@export var blastSize = 0.75
+@export var blastSize = 0.6
 @export var blastDamage = 3
 
-@export var circleSpeed = 1000
+@export var circleSpeed = 800
 @export var circleFirerate = 0.75
-@export var circleSize = 1
+@export var circleSize = 0.8
 @export var circleDamage = 5
 
-@export var burstSpeed = 800
+@export var burstSpeed = 600
 @export var burstFirerate = 1
-@export var burstSize = 1
+@export var burstSize = 0.8
 @export var burstDamage = 5
 
-@export var spraySpeed = 800
+@export var spraySpeed = 600
 @export var sprayFirerate = 1
-@export var spraySize = 1
+@export var spraySize = 0.8
 @export var sprayDamage = 5
 
 @export var beamSize = 1
