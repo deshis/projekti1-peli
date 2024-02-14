@@ -1,12 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=27 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
 [ext_resource type="PackedScene" uid="uid://cm4ypsw2vjmqy" path="res://loadingUI.tscn" id="1_cnnkx"]
 [ext_resource type="Script" path="res://WorldMap.gd" id="2_i6627"]
 [ext_resource type="Texture2D" uid="uid://c62t8mwoakd8i" path="res://sprites/tilemap_terrain.png" id="2_kaniq"]
 [ext_resource type="PackedScene" uid="uid://kwnhyg72qcxf" path="res://hud.tscn" id="3_chuea"]
-[ext_resource type="Texture2D" uid="uid://b42lawsyrfkqw" path="res://sprites/obstacles.png" id="3_lhqoq"]
+[ext_resource type="Texture2D" uid="uid://b42lawsyrfkqw" path="res://sprites/wall.png" id="3_lhqoq"]
 [ext_resource type="Texture2D" uid="uid://tuc4xrr1drgf" path="res://sprites/navmesh.png" id="4_0dwfg"]
+[ext_resource type="Texture2D" uid="uid://27jfqlxxj605" path="res://sprites/obstacles.png" id="5_k7p6k"]
 [ext_resource type="Script" path="res://FiringQueueContainer.gd" id="6_7n4u1"]
 [ext_resource type="Script" path="res://TimerBar.gd" id="6_07ov0"]
 [ext_resource type="Texture2D" uid="uid://ujaui61aj1lg" path="res://sprites/single.png" id="6_r3hev"]
@@ -92,7 +93,46 @@ texture_region_size = Vector2i(64, 64)
 0:1/0 = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32, -8, -32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2s3o"]
+texture = ExtResource("5_k7p6k")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.5, -23.5, -15.5, 20, 14.5, 20.5, 14.5, -23.5)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8.5, -18.5, 12, -18.5, 12, 0.5, 8, 5.5, -10, 4.5)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.5, 15, 13.5, 24, 18.5, 21, 18, 5.5, -4, -3, -7.5, 4, -15, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -28, 16, -28, 14.5, 24, -17, 23.5)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 23, 12, 17.5, 11.5, -8.5, -7.5, -9.5, -10.5, -2, -10, 23.5)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -10, 32, 15, -26, 13.5, -26.5, -3, -9.5, -14.5, 1.5, -14)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-27, 12.5, 26, 13, 26.5, -2.5, 15.5, -11, -17.5, -11, -27, -1.5)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.5, 21, 10, 11, 4, -0.5, 4, -9.5, -4.5, -9, -5.5, 0, -8, 9.5, -6.5, 18.5)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.5, 5.5, 6, 7, 11.5, 1, 15, -10.5, 8, -18, -1.5, -16.5, -6, -8.5)
 
 [sub_resource type="TileSet" id="TileSet_q0wc0"]
 tile_size = Vector2i(64, 64)
@@ -102,6 +142,7 @@ navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_t52rp")
 sources/2 = SubResource("TileSetAtlasSource_xr3q0")
 sources/3 = SubResource("TileSetAtlasSource_6puct")
+sources/4 = SubResource("TileSetAtlasSource_n2s3o")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb0wd"]
 bg_color = Color(0.188235, 0.184314, 0.176471, 1)

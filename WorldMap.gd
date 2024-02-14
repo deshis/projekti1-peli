@@ -30,7 +30,7 @@ func _ready():
 	await generate_world(position, mapSize)
 	hud.visible=true
 	player.visible=true
-	player.get_node("PlayerCamera").set_zoom(Vector2(1,1))
+	player.get_node("PlayerCamera").set_zoom(Vector2(1.5,1.5))
 	get_tree().paused = false
 	loadingUI.queue_free()
 
@@ -101,15 +101,17 @@ func generate_obstacles(pos, size):
 		var cellPosX = tilePos.x-cellPosXOffset+x
 		for y in range(size):
 			var cellPosY = tilePos.y-cellPosYOffset+y
-			#spawn an obstacle and mark as non-navigable
+			
 			#prevent diagonals
 			if(rng.randf_range(0,1)<=obstacleChance and get_cell_atlas_coords(2, Vector2i(cellPosX-1, cellPosY-1))!=Vector2i(0,0) and get_cell_atlas_coords(2, Vector2i(cellPosX-1, cellPosY+1))!=Vector2i(0,0)):
-				set_cell(2, Vector2i(cellPosX, cellPosY), 2, Vector2i(0,0))
-				set_cell(0, Vector2i(cellPosX, cellPosY), 3, Vector2i(0,1))
+				if(rng.randf_range(0,1)<=0.5): #50% chance for obstacle to be flipped for more variety
+					set_cell(2, Vector2i(cellPosX, cellPosY), 4, Vector2i(rng.randi_range(0,2),rng.randi_range(0,2)), TileSetAtlasSource.TRANSFORM_FLIP_H) #set random obstacle
+				else:
+					set_cell(2, Vector2i(cellPosX, cellPosY), 4, Vector2i(rng.randi_range(0,2),rng.randi_range(0,2))) #set random obstacle
+				set_cell(0, Vector2i(cellPosX, cellPosY), 3, Vector2i(0,1)) #set navmesh as non-navigable
 			else:
 				#if no obstacle, navigable
 				set_cell(0, Vector2i(cellPosX, cellPosY), 3, Vector2i(0,0))
-
 
 
 func generate_outer_wall(pos, size):
