@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=29 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
 [ext_resource type="PackedScene" uid="uid://cm4ypsw2vjmqy" path="res://loadingUI.tscn" id="1_cnnkx"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://GameTimer.gd" id="11_abxn5"]
 [ext_resource type="Script" path="res://MainMusic.gd" id="16_5tcp3"]
 [ext_resource type="Script" path="res://GameDirector.gd" id="16_c003v"]
+[ext_resource type="PackedScene" uid="uid://cut2p4caho3gb" path="res://item_pick_up.tscn" id="17_cvqj0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t52rp"]
 resource_name = "terrain"
@@ -344,6 +345,9 @@ script = ExtResource("8_lgtmv")
 process_mode = 3
 bus = &"Music"
 script = ExtResource("16_5tcp3")
+
+[node name="ItemPickUp" parent="." instance=ExtResource("17_cvqj0")]
+position = Vector2(-242, 237)
 
 [connection signal="timeout" from="Player/GameDirector/MoneyTimer" to="Player/GameDirector" method="_on_money_timer_timeout"]
 [connection signal="timeout" from="Player/GameDirector/SpawnTimer" to="Player/GameDirector" method="_on_spawn_timer_timeout"]

@@ -18,6 +18,8 @@ var swapping
 var paused
 var selectedIndex
 
+@onready var soundEffect = get_node("UI_select") 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	swapping = false
@@ -58,8 +60,8 @@ func _ready():
 			textBox.append_text("HEALING\n")
 			
 func _set_swapping(s):
+	soundEffect.play()
 	swapping = s
-
 
 func _process(_delta):
 	if(swapping): #selecting a new mode 
@@ -99,8 +101,8 @@ func _process(_delta):
 			elif(selectedIndex==1): #main menu
 					get_tree().change_scene_to_file("res://menu.tscn")
 
-
 func _highlight(index):
+	soundEffect.play()
 	for i in currentModes.get_children().size():
 		var panel = currentModes.get_child(i).get_node("Panel")
 		if(i==index):
@@ -109,6 +111,7 @@ func _highlight(index):
 			panel.set_visible(false)
 
 func _highlightPauseMenu(index):
+	soundEffect.play()
 	var buttons = get_node("InventorySplitter/PauseMenuButtons")
 	for i in range(0,buttons.get_children().size()):
 		if(i==index):

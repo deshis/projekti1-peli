@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://scbsjq8e0nub"]
+[gd_scene load_steps=11 format=3 uid="uid://scbsjq8e0nub"]
 
 [ext_resource type="Script" path="res://CurrentModes.gd" id="1_j4xuh"]
 [ext_resource type="Script" path="res://inventory.gd" id="1_khwno"]
 [ext_resource type="Texture2D" uid="uid://ujaui61aj1lg" path="res://sprites/single.png" id="3_gmyqk"]
 [ext_resource type="Script" path="res://Descriptions.gd" id="4_v7xpy"]
 [ext_resource type="Script" path="res://NewMode.gd" id="7_fndot"]
+[ext_resource type="AudioStream" uid="uid://bhee00epgkb5" path="res://sound/sfx/UI_SELECT.mp3" id="7_lcieh"]
 [ext_resource type="Script" path="res://AcceptDiscardButtonPrompt.gd" id="9_es5va"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vktc3"]
@@ -322,3 +323,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vktc3")
 [node name="BackgroundPanel" type="Panel" parent="InventorySplitter/PauseMenuButtons/MarginContainer2"]
 z_index = -2
 layout_mode = 2
+
+[node name="UI_select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_lcieh")
+bus = &"SFX"
