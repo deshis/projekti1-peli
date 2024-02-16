@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dxevy65lkhibv"]
+[gd_scene load_steps=28 format=3 uid="uid://dxevy65lkhibv"]
 
 [ext_resource type="PackedScene" uid="uid://dxta58xb1b3wk" path="res://player.tscn" id="1_66f0x"]
 [ext_resource type="PackedScene" uid="uid://cm4ypsw2vjmqy" path="res://loadingUI.tscn" id="1_cnnkx"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://HealthBar.gd" id="7_tkodr"]
 [ext_resource type="Script" path="res://ModeGenerator.gd" id="8_lgtmv"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="11_abxn5"]
+[ext_resource type="Script" path="res://MainMusic.gd" id="16_5tcp3"]
 [ext_resource type="Script" path="res://GameDirector.gd" id="16_c003v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t52rp"]
@@ -339,7 +340,13 @@ script = SubResource("GDScript_h37l6")
 [node name="ModeGenerator" type="Node" parent="."]
 script = ExtResource("8_lgtmv")
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+bus = &"Music"
+script = ExtResource("16_5tcp3")
+
 [connection signal="timeout" from="Player/GameDirector/MoneyTimer" to="Player/GameDirector" method="_on_money_timer_timeout"]
 [connection signal="timeout" from="Player/GameDirector/SpawnTimer" to="Player/GameDirector" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Player/GameDirector/DifficultyTimer" to="Player/GameDirector" method="_on_difficulty_timer_timeout"]
 [connection signal="timeout" from="HUD/GameTimerMargin/GameTimer/Timer" to="HUD/GameTimerMargin/GameTimer" method="_on_timer_timeout"]
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]
