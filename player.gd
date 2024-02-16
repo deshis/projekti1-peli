@@ -18,13 +18,19 @@ var canTakeDamage = true
 @onready var regenTimer = get_node("HealthRegenTimer")
 @onready var regenCooldownTimer = get_node("HealthRegenCooldownTimer")
 
-var healCooldown=10.0
+var healCooldown=6.0
 var canRegen = true
 var moving
 var sprinting = false
 var moveAnimationDirection
 
 var animationThreshold=0.35
+
+@onready var takeDMGSound = get_node("TakeDMGSound")
+@onready var healSound = get_node("HealSound")
+@onready var regenStartSound = get_node("RegenStartSound")
+@onready var moveSound = get_node("MoveSlowSound")
+@onready var sprintSound = get_node("MoveFastSound")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -82,16 +88,26 @@ func _physics_process(_delta):
 	if(!moving):
 		animatedSprite.set_speed_scale(0)
 	
-	
 	#prevent moving while animation not playing
 	if(moving):
+		if(sprinting):
+			if(!sprintSound.is_playing()):
+				sprintSound.play()
+				moveSound.stop()
+		else:
+			if(!moveSound.is_playing()):
+				moveSound.play()
+				sprintSound.stop()
 		velocity = input_direction * currentSpeed
 	else:
+		moveSound.stop()
+		sprintSound.stop()
 		velocity=Vector2.ZERO
+		
 	move_and_slide()
 
-
 func _take_damage(dmg):
+	takeDMGSound.play()
 	currentHealth-=dmg
 	update_health_ui()
 	if(currentHealth<=0):
@@ -123,10 +139,8 @@ func _on_player_hurt_box_body_entered(body):
 			_take_damage(body.get_damage())
 			body.queue_free()
 
-
 func _on_i_frame_timer_timeout():
 	canTakeDamage=true
-
 
 func _on_health_regen_timer_timeout():
 	if(currentHealth<maxHealth&&canRegen):
@@ -135,8 +149,11 @@ func _on_health_regen_timer_timeout():
 
 func heal(amount):
 	if(currentHealth<maxHealth):
+		healSound.play()
 		currentHealth+=amount
 		update_health_ui()
 
 func _on_health_regen_cooldown_timer_timeout():
+	if(currentHealth<maxHealth):
+		regenStartSound.play()
 	canRegen=true

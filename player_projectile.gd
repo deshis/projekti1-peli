@@ -10,6 +10,9 @@ var dot
 var aoe
 var heal
 
+@onready var HitObstacle = preload("res://HitObstacleSound.tscn")
+@onready var HitEnemy = preload("res://HitEnemySound.tscn")
+
 func _get_type():
 	return type
 
@@ -39,6 +42,11 @@ func _despawn():
 func _process(_delta):
 	pass
 
-
-func _on_body_entered(_body): #remove if collide with environment
+func _on_body_entered(body): #remove if collide with environment
+	if is_instance_of(body, TileMap):
+		var instance = HitObstacle.instantiate()
+		get_tree().current_scene.call_deferred("add_child", instance)
+	elif body.get_collision_layer()==8:
+		var instance = HitEnemy.instantiate()
+		get_tree().current_scene.call_deferred("add_child", instance)
 	queue_free()

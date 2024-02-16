@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://7nr24eoqijq"]
+[gd_scene load_steps=18 format=3 uid="uid://7nr24eoqijq"]
 
 [ext_resource type="Script" path="res://rangedenemy.gd" id="1_d5gho"]
 [ext_resource type="Texture2D" uid="uid://d011iir0mnwkq" path="res://sprites/rangedEnemy/attack_up_right_1.png" id="2_55md1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ceiyawxa8exfw" path="res://sprites/rangedEnemy/move_up_right_3.png" id="6_yb4qw"]
 [ext_resource type="Texture2D" uid="uid://cirbkm4bgpnkl" path="res://sprites/rangedEnemy/move_down_left_2.png" id="7_woogw"]
 [ext_resource type="Texture2D" uid="uid://c081efjtxyb7s" path="res://sprites/rangedEnemy/move_down_left_3.png" id="8_cfxev"]
+[ext_resource type="AudioStream" uid="uid://b8emxurpvrjx2" path="res://sound/sfx/ENEMY_PROJECTILE_ATTACK.mp3" id="12_b00rg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rllpx"]
 animations = [{
@@ -140,6 +141,10 @@ one_shot = true
 [node name="DOTTimer2" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="RangedEnemyAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_b00rg")
+volume_db = -5.0
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="TargetRefreshTimer" to="." method="_on_timer_timeout"]

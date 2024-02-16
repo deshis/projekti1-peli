@@ -4,7 +4,13 @@ var selectedIndex=0
 
 func _ready():
 	get_node("Panel/timeMargin/RichTextLabel").set_text("[center]You were alive for "+str(Global.timeAlive))
-	_highlight(0)
+	
+	for i in range(2):
+		var panel = get_node("Panel/MenuButtons").get_child(i).get_node("SelectedPanel")
+		if(i==0):
+			panel.set_visible(true)
+		else:
+			panel.set_visible(false)
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("UI_up")):
@@ -27,6 +33,7 @@ func _process(_delta):
 
 
 func _highlight(index):
+	get_node("UI_select").play()
 	for i in range(2):
 		var panel = get_node("Panel/MenuButtons").get_child(i).get_node("SelectedPanel")
 		if(i==index):

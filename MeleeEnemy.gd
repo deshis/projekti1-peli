@@ -33,6 +33,9 @@ var damageOverTime = false
 
 @onready var aoe = preload("res://aoe.tscn")
 
+@onready var deathSound = preload("res://EnemyDeathSound.tscn")
+@onready var attackSound = get_node("MeleeEnemyAttack")
+
 func _ready():
 	if(budget):
 		SPEED=SPEED+SPEED*budget/50
@@ -87,7 +90,6 @@ func play_attack_animation(dir):
 			animatedSprite.set_flip_h(false)
 	animationPlaying=true
 
-
 func _on_timer_timeout(): #refresh target
 	if(global_position.distance_to(target.global_position)<=threshold&&!cooldownActive):
 		_attack()
@@ -112,6 +114,7 @@ func _attack():
 	await get_tree().create_timer(0.1).timeout #pause to give player time to dodge
 	get_tree().current_scene.add_child(instance)
 	play_attack_animation(aimDirection.normalized())
+	attackSound.play()
 
 func _on_cooldown_timer_timeout():
 	cooldownActive = false
@@ -159,4 +162,6 @@ func _take_damage(dmg):
 			var instance = item.instantiate()
 			instance.position=global_position
 			get_tree().current_scene.call_deferred("add_child", instance)
+		var instance = deathSound.instantiate()
+		get_tree().current_scene.call_deferred("add_child", instance)
 		queue_free()

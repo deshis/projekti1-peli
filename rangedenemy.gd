@@ -42,6 +42,10 @@ var damageOverTime = false
 
 @onready var aoe = preload("res://aoe.tscn")
 
+@onready var deathSound = preload("res://EnemyDeathSound.tscn")
+@onready var attackSound = get_node("RangedEnemyAttack")
+
+
 func _ready():
 	if(budget):
 		SPEED=SPEED+SPEED*budget/50
@@ -137,6 +141,7 @@ func _shoot():
 		"spray":
 			_spray(aimDirection,damage,speed,size)
 	play_attack_animation(aimDirection.normalized())
+	attackSound.play()
 
 func _spawn_projectile(direction,damage,speed,size):
 	var instance = projectile.instantiate()
@@ -211,6 +216,8 @@ func _take_damage(dmg):
 			var instance = item.instantiate()
 			instance.position=global_position
 			get_tree().current_scene.call_deferred("add_child", instance)
+		var instance = deathSound.instantiate()
+		get_tree().current_scene.call_deferred("add_child", instance)
 		queue_free()
 
 

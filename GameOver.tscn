@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfihm8i6mo6vj"]
+[gd_scene load_steps=6 format=3 uid="uid://bfihm8i6mo6vj"]
 
 [ext_resource type="Script" path="res://GameOver.gd" id="1_wtv0l"]
+[ext_resource type="AudioStream" uid="uid://dibb7r8vwxnm0" path="res://sound/sfx/PLAYER_DEATH.mp3" id="2_4qrpq"]
+[ext_resource type="AudioStream" uid="uid://bhee00epgkb5" path="res://sound/sfx/UI_SELECT.mp3" id="3_bs5rv"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_wwxiy"]
 
@@ -148,3 +150,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_elvh5")
 [node name="BackgroundPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer2"]
 z_index = -2
 layout_mode = 2
+
+[node name="PlayerDeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4qrpq")
+volume_db = -5.0
+autoplay = true
+
+[node name="UI_select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bs5rv")
+bus = &"SFX"

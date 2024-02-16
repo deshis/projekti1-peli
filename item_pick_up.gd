@@ -8,6 +8,7 @@ var hasBeenPickedUp = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_node("ItemDropSound").play()
 	mode = modeGenerator._create_mode(gameDirector._get_bias())
 	get_child(1).set_texture(load("res://sprites/"+mode[0]+".png"))
 

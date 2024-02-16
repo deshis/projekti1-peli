@@ -25,6 +25,11 @@ var animationThreshold=0.35
 @onready var animatedSprite = get_node("AnimatedSprite2D")
 var animationPlaying = false
 
+@onready var projectileSound = get_node("ProjectileSound")  
+@onready var beamSound = get_node("BeamSound")
+@onready var laserSound = get_node("LaserSound")
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	switchTimer.timeout.connect(_on_switch_timer_timeout)
@@ -156,7 +161,8 @@ func _spawn_beam(damage,width, dot, aoe, heal):
 	instance.aoe=aoe
 	instance.heal=heal
 	get_tree().current_scene.add_child(instance)
-	
+	if(!beamSound.is_playing()):
+		beamSound.play()
 
 func _spawn_laser(damage,width, dot, aoe, heal):
 	var ray = _cast_ray_in_aim_direction()
@@ -170,6 +176,7 @@ func _spawn_laser(damage,width, dot, aoe, heal):
 	instance.aoe=aoe
 	instance.heal=heal
 	get_tree().current_scene.add_child(instance)
+	laserSound.play()
 
 func _spawn_projectile(direction,damage,speed,size, dot, aoe, heal):
 	var instance = projectile.instantiate()
@@ -182,6 +189,8 @@ func _spawn_projectile(direction,damage,speed,size, dot, aoe, heal):
 	instance.aoe=aoe
 	instance.heal=heal
 	get_tree().current_scene.add_child(instance)
+	projectileSound.play()
+	
 	
 func _burst(direction,damage,speed,size, dot, aoe, heal):
 	for i in rng.randi_range(3,5):

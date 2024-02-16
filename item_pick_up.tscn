@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cut2p4caho3gb"]
+[gd_scene load_steps=10 format=3 uid="uid://cut2p4caho3gb"]
 
 [ext_resource type="Script" path="res://item_pick_up.gd" id="1_3l2r0"]
+[ext_resource type="AudioStream" uid="uid://bogl0aoyb3o4l" path="res://sound/sfx/ITEM_DROP.mp3" id="3_gxwns"]
 [ext_resource type="Texture2D" uid="uid://c26ih12ut42bw" path="res://sprites/particles/star_08.png" id="9_3ubkd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7m4g4"]
@@ -49,5 +50,9 @@ process_material = SubResource("ParticleProcessMaterial_jxegl")
 texture = SubResource("AnimatedTexture_vf1hy")
 lifetime = 999.0
 explosiveness = 1.0
+
+[node name="ItemDropSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gxwns")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

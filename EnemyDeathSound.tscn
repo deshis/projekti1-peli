@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7i0l278yyp3e"]
+
+[ext_resource type="AudioStream" uid="uid://b717evxkugqyq" path="res://sound/sfx/ENEMY_DEATH.mp3" id="1_e7s3t"]
+[ext_resource type="Script" path="res://DeleteOnSoundFinish.gd" id="2_hg8l4"]
+
+[node name="EnemyDeathSound" type="AudioStreamPlayer"]
+stream = ExtResource("1_e7s3t")
+volume_db = -10.0
+autoplay = true
+bus = &"SFX"
+script = ExtResource("2_hg8l4")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

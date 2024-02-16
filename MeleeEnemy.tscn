@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bpir8wlvqw8eo"]
+[gd_scene load_steps=18 format=3 uid="uid://bpir8wlvqw8eo"]
 
 [ext_resource type="Script" path="res://MeleeEnemy.gd" id="1_moxgo"]
 [ext_resource type="Texture2D" uid="uid://b3o5kai7esr54" path="res://sprites/meleeEnemy/attack_down_left_1.png" id="2_h43y7"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b6120vkhw7gnj" path="res://sprites/meleeEnemy/move_up_right_1.png" id="7_qpbd6"]
 [ext_resource type="Texture2D" uid="uid://p8vcpfaeirou" path="res://sprites/meleeEnemy/move_up_right_2.png" id="8_lsc5m"]
 [ext_resource type="Texture2D" uid="uid://bfwxha6mgcwd5" path="res://sprites/meleeEnemy/move_up_right_3.png" id="9_ev0x2"]
+[ext_resource type="AudioStream" uid="uid://b457nomhc15sh" path="res://sound/sfx/ENEMY_MELEE_ATTACK.mp3" id="12_ax40b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2a2v7"]
 animations = [{
@@ -140,6 +141,10 @@ one_shot = true
 [node name="DOTTimer2" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="MeleeEnemyAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_ax40b")
+volume_db = -5.0
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="TargetRefreshTimer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dxta58xb1b3wk"]
+[gd_scene load_steps=36 format=3 uid="uid://dxta58xb1b3wk"]
 
 [ext_resource type="Texture2D" uid="uid://c3b6in3ku53gq" path="res://sprites/icon.svg" id="1_omept"]
 [ext_resource type="Script" path="res://player.gd" id="1_xpekm"]
@@ -23,6 +23,14 @@
 [ext_resource type="Texture2D" uid="uid://bfwqb0f0t15xm" path="res://sprites/player/aiming/aim_up_right_2.png" id="17_nsl74"]
 [ext_resource type="Texture2D" uid="uid://c0ufow5sdpk2u" path="res://sprites/player/aiming/aim_down_right2.png" id="18_b0bnq"]
 [ext_resource type="Texture2D" uid="uid://digsyywwbp4du" path="res://sprites/player/aiming/aim_down_2.png" id="19_7puy5"]
+[ext_resource type="AudioStream" uid="uid://gwhc21q1to55" path="res://sound/sfx/HEAL.mp3" id="24_air7w"]
+[ext_resource type="AudioStream" uid="uid://cf1kjd8tyor37" path="res://sound/sfx/REGEN_START.mp3" id="24_bw8re"]
+[ext_resource type="AudioStream" uid="uid://cuj76y0u5np16" path="res://sound/sfx/PLAYER_PROJECTILE.mp3" id="24_f55c1"]
+[ext_resource type="AudioStream" uid="uid://708qr8rjyxte" path="res://sound/sfx/PLAYER_TAKE_DAMAGE.mp3" id="24_ju0tr"]
+[ext_resource type="AudioStream" uid="uid://dc4h8shf1j8aa" path="res://sound/sfx/PLAYER_LASER.mp3" id="26_rtffe"]
+[ext_resource type="AudioStream" uid="uid://dfm1n4u5bmi1b" path="res://sound/sfx/PLAYER_BEAM.mp3" id="26_yk2rt"]
+[ext_resource type="AudioStream" uid="uid://dsvvlo3amu2yy" path="res://sound/sfx/MOVE_SLOW.mp3" id="30_hcxt4"]
+[ext_resource type="AudioStream" uid="uid://b10jducr0mk5v" path="res://sound/sfx/MOVE_FAST.mp3" id="31_6sxuq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p3ylv"]
 animations = [{
@@ -280,6 +288,18 @@ sprite_frames = SubResource("SpriteFrames_wnxy8")
 animation = &"shoot_up_right"
 offset = Vector2(0, -27)
 
+[node name="ProjectileSound" type="AudioStreamPlayer" parent="PlayerProjectileSpawner"]
+stream = ExtResource("24_f55c1")
+volume_db = -5.0
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="PlayerProjectileSpawner"]
+stream = ExtResource("26_rtffe")
+volume_db = -15.0
+
+[node name="BeamSound" type="AudioStreamPlayer" parent="PlayerProjectileSpawner"]
+stream = ExtResource("26_yk2rt")
+volume_db = -5.0
+
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
@@ -303,6 +323,29 @@ wait_time = 0.5
 autostart = true
 
 [node name="HealthRegenCooldownTimer" type="Timer" parent="."]
+
+[node name="HealSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_air7w")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="RegenStartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_bw8re")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="TakeDMGSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_ju0tr")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="MoveSlowSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("30_hcxt4")
+volume_db = -10.0
+
+[node name="MoveFastSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("31_6sxuq")
+volume_db = -10.0
 
 [connection signal="timeout" from="PlayerProjectileSpawner/ShootTimer" to="PlayerProjectileSpawner" method="_on_shoot_timer_timeout"]
 [connection signal="animation_finished" from="PlayerProjectileSpawner/AnimatedSprite2D" to="PlayerProjectileSpawner" method="_on_animated_sprite_2d_animation_finished"]
