@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxpakgmjehhap"]
+[gd_scene load_steps=6 format=3 uid="uid://bxpakgmjehhap"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_70ilq"]
+[ext_resource type="AudioStream" uid="uid://bhee00epgkb5" path="res://sound/sfx/UI_SELECT.mp3" id="2_w8rs3"]
+[ext_resource type="AudioStream" uid="uid://cchel4b1kevov" path="res://sound/music/Desert Mayhem.mp3" id="3_bmtmp"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_wwxiy"]
 
@@ -153,7 +155,7 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[center] QUIT GAME [/center]"
+text = "[center] SETTINGS [/center]"
 fit_content = true
 custom_effects = [SubResource("RichTextEffect_wwxiy")]
 
@@ -174,3 +176,45 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_k6i0y")
 [node name="BackgroundPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer4"]
 z_index = -2
 layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="Panel/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MenuButtons/MarginContainer5"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center] QUIT GAME [/center]"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_wwxiy")]
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="Panel/MenuButtons/MarginContainer5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="SelectedPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer5"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k6i0y")
+
+[node name="BackgroundPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer5"]
+z_index = -2
+layout_mode = 2
+
+[node name="UI_select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_w8rs3")
+bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bmtmp")
+autoplay = true
+bus = &"Music"

@@ -1,20 +1,26 @@
 extends Control
 
 var selectedIndex=0
+@onready var soundEffect = get_node("UI_select") 
 
 func _ready():
 	get_tree().paused = false
-	_highlight(0)
+	for i in range(5):
+		var panel = get_node("Panel/MenuButtons").get_child(i).get_node("SelectedPanel")
+		if(i==0):
+			panel.set_visible(true)
+		else:
+			panel.set_visible(false)
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("UI_up")):
 		if(selectedIndex<=0):
-			selectedIndex=3
+			selectedIndex=4
 		else:
 			selectedIndex-=1
 		_highlight(selectedIndex)
 	if(Input.is_action_just_pressed("UI_down")):
-		if(selectedIndex>=3):
+		if(selectedIndex>=4):
 			selectedIndex=0
 		else:
 			selectedIndex+=1
@@ -26,13 +32,16 @@ func _process(_delta):
 			pass
 		elif(selectedIndex==2): #credits
 			pass
-		elif(selectedIndex==3): #quit game
+		elif(selectedIndex==3): #settings
+			pass
+		elif(selectedIndex==4): #quit
 			get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 			get_tree().quit()
 
 
 func _highlight(index):
-	for i in range(4):
+	soundEffect.play()
+	for i in range(5):
 		var panel = get_node("Panel/MenuButtons").get_child(i).get_node("SelectedPanel")
 		if(i==index):
 			panel.set_visible(true)
