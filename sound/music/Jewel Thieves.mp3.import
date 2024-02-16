@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://f23w1ufgxpu1"
+path="res://.godot/imported/Jewel Thieves.mp3-8f34cc16d9fceee1f3d66ac981e3e584.mp3str"
+
+[deps]
+
+source_file="res://sound/music/Jewel Thieves.mp3"
+dest_files=["res://.godot/imported/Jewel Thieves.mp3-8f34cc16d9fceee1f3d66ac981e3e584.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

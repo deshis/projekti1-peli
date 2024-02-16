@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://imw00fvtpyvj"
+path="res://.godot/imported/Red Convertible.mp3-bcf0d7c949b02319c7127301a0f1fc35.mp3str"
+
+[deps]
+
+source_file="res://sound/music/Red Convertible.mp3"
+dest_files=["res://.godot/imported/Red Convertible.mp3-bcf0d7c949b02319c7127301a0f1fc35.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

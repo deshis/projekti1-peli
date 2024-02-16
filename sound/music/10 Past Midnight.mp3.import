@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkqvb22niylpt"
+path="res://.godot/imported/10 Past Midnight.mp3-0aa45395e510c48d0733ada695eb6132.mp3str"
+
+[deps]
+
+source_file="res://sound/music/10 Past Midnight.mp3"
+dest_files=["res://.godot/imported/10 Past Midnight.mp3-0aa45395e510c48d0733ada695eb6132.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

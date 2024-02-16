@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cchel4b1kevov"
+path="res://.godot/imported/Desert Mayhem.mp3-053d5282e86f4c6580cb974748ab3db3.mp3str"
+
+[deps]
+
+source_file="res://sound/music/Desert Mayhem.mp3"
+dest_files=["res://.godot/imported/Desert Mayhem.mp3-053d5282e86f4c6580cb974748ab3db3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
