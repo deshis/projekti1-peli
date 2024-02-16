@@ -30,11 +30,11 @@ extends Node
 @export var spraySize = 0.8
 @export var sprayDamage = 5
 
-@export var beamSize = 1
+@export var beamSize = 0.7
 @export var beamDamage = 0.1 #low because it triggers every frame
 
 @export var laserFirerate = 1
-@export var laserSize = 1
+@export var laserSize = 0.8
 @export var laserDamage = 10
 
 var rng = RandomNumberGenerator.new()
