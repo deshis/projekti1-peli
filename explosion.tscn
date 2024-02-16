@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnaqmdq2dkkq5"]
+
+[ext_resource type="Script" path="res://explosion.gd" id="1_1367n"]
+[ext_resource type="Texture2D" uid="uid://c4s18cvjmm7u2" path="res://sprites/particles/scorch_01.png" id="4_ypwp5"]
+[ext_resource type="Texture2D" uid="uid://b8q4vnqlawra5" path="res://sprites/particles/scorch_02.png" id="5_3qaee"]
+[ext_resource type="Texture2D" uid="uid://cxxjol0vubisi" path="res://sprites/particles/scorch_03.png" id="6_myuge"]
+[ext_resource type="AudioStream" uid="uid://b717evxkugqyq" path="res://sound/sfx/ENEMY_DEATH.mp3" id="8_5rov8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mt1oc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ypwp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3qaee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_myuge")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"new_animation_1",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_1367n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mt1oc")
+animation = &"new_animation_1"
+autoplay = "new_animation_1"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_5rov8")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

@@ -33,7 +33,7 @@ var damageOverTime = false
 
 @onready var aoe = preload("res://aoe.tscn")
 
-@onready var deathSound = preload("res://EnemyDeathSound.tscn")
+@onready var deathExplosion = preload("res://explosion.tscn")
 @onready var attackSound = get_node("MeleeEnemyAttack")
 
 func _ready():
@@ -159,9 +159,10 @@ func _take_damage(dmg):
 	healthBar.value = currentHealth
 	if(currentHealth<=0):
 		if(rng.randf_range(0, 1)<=itemDropChance):
-			var instance = item.instantiate()
-			instance.position=global_position
-			get_tree().current_scene.call_deferred("add_child", instance)
-		var instance = deathSound.instantiate()
-		get_tree().current_scene.call_deferred("add_child", instance)
+			var itemInstance = item.instantiate()
+			itemInstance.position=global_position
+			get_tree().current_scene.call_deferred("add_child", itemInstance)
+		var explosionInstance = deathExplosion.instantiate()
+		explosionInstance.position=global_position
+		get_tree().current_scene.call_deferred("add_child", explosionInstance)
 		queue_free()
