@@ -13,6 +13,12 @@ func _ready():
 			panel.set_visible(false)
 
 func _process(_delta):
+	
+	if(Input.is_action_just_pressed("keyboardInputs")):
+		Global.controller=false
+	elif(Input.is_action_just_pressed("controllerInputs", false)):
+		Global.controller=true
+		
 	if(Input.is_action_just_pressed("UI_up")):
 		if(selectedIndex<=0):
 			selectedIndex=4
