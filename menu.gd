@@ -30,7 +30,7 @@ func _process(_delta):
 		if(selectedIndex==0): #start game
 			get_tree().change_scene_to_file("res://main.tscn")
 		elif(selectedIndex==1): #controls
-			pass
+			get_tree().change_scene_to_file("res://controls.tscn")
 		elif(selectedIndex==2): #credits
 			get_tree().change_scene_to_file("res://credits.tscn")
 		elif(selectedIndex==3): #settings
