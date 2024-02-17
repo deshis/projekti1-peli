@@ -85,3 +85,5 @@ script = ExtResource("2_qh2t0")
 stream = ExtResource("3_c0q8t")
 bus = &"Music"
 script = ExtResource("4_xu3hw")
+
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]

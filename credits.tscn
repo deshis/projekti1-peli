@@ -94,3 +94,5 @@ script = ExtResource("1_masto")
 stream = ExtResource("2_32d8k")
 bus = &"Music"
 script = ExtResource("3_t52nb")
+
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]

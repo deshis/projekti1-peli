@@ -219,3 +219,5 @@ bus = &"SFX"
 stream = ExtResource("3_bmtmp")
 bus = &"Music"
 script = ExtResource("4_kf4pl")
+
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]

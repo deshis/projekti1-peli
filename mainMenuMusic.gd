@@ -7,3 +7,6 @@ func _ready():
 		play(Global.mainMenuMusicTime)
 	else:
 		play()
+
+func _on_finished():
+	play()
