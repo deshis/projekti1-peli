@@ -58,7 +58,7 @@ func _on_spawn_timer_timeout():
 	#the amount of enemies is randomized and the credits are split evenly among the spawned enemies
 	#for example, the director could spawn a few strong enemies or many weaker enemies
 	@warning_ignore("integer_division")
-	enemyAmount = rng.randi_range(1, 2+difficultyLevel/2)
+	enemyAmount = rng.randi_range(1, 3+difficultyLevel/2)
 	var budget = credits/enemyAmount
 	var chance
 	
@@ -69,7 +69,7 @@ func _on_spawn_timer_timeout():
 		chance=0.15
 	else:
 		chance=0.05
-	
+
 	while(credits>=1):
 		if(rng.randi_range(0,1)==1): #spawn melee enemy
 			var instance = meleeEnemy.instantiate()

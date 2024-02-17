@@ -95,7 +95,7 @@ func _create_mode(bias: float=0.0, startIndex:int=0, endIndex:int=7):
 	
 	#dot, aoe, selfheal
 	for i in range(3):
-		if(rng.randf_range(0,1)<=0.2*(1.0+bias)):
+		if(rng.randf_range(0,1)<=0.1*(1.0+bias)):
 			firingMode.append(true)
 		else:
 			firingMode.append(false)

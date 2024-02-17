@@ -39,7 +39,7 @@ var damageOverTime = false
 func _ready():
 	if(budget):
 		SPEED=SPEED+SPEED*budget/50
-		maxHealth=maxHealth+maxHealth*budget/50
+		maxHealth=maxHealth+maxHealth*budget/20
 		damage=damage+damage*budget/50
 	currentHealth=maxHealth
 	healthBar.max_value = maxHealth
