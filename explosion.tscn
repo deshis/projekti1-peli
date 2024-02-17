@@ -37,7 +37,7 @@ autoplay = "new_animation_1"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_5rov8")
-volume_db = -10.0
+volume_db = -2.0
 autoplay = true
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

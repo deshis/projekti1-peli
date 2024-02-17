@@ -290,15 +290,12 @@ offset = Vector2(0, -27)
 
 [node name="ProjectileSound" type="AudioStreamPlayer" parent="PlayerProjectileSpawner"]
 stream = ExtResource("24_f55c1")
-volume_db = -5.0
 
 [node name="LaserSound" type="AudioStreamPlayer" parent="PlayerProjectileSpawner"]
 stream = ExtResource("26_rtffe")
-volume_db = -15.0
 
 [node name="BeamSound" type="AudioStreamPlayer" parent="PlayerProjectileSpawner"]
 stream = ExtResource("26_yk2rt")
-volume_db = -5.0
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_callback = 0
@@ -326,26 +323,21 @@ autostart = true
 
 [node name="HealSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("24_air7w")
-volume_db = -15.0
 bus = &"SFX"
 
 [node name="RegenStartSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("24_bw8re")
-volume_db = -5.0
 bus = &"SFX"
 
 [node name="TakeDMGSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("24_ju0tr")
-volume_db = -5.0
 bus = &"SFX"
 
 [node name="MoveSlowSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("30_hcxt4")
-volume_db = -10.0
 
 [node name="MoveFastSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("31_6sxuq")
-volume_db = -10.0
 
 [connection signal="timeout" from="PlayerProjectileSpawner/ShootTimer" to="PlayerProjectileSpawner" method="_on_shoot_timer_timeout"]
 [connection signal="animation_finished" from="PlayerProjectileSpawner/AnimatedSprite2D" to="PlayerProjectileSpawner" method="_on_animated_sprite_2d_animation_finished"]

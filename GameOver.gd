@@ -4,7 +4,7 @@ var selectedIndex=0
 
 func _ready():
 	get_node("Panel/timeMargin/RichTextLabel").set_text("[center]You were alive for "+str(Global.timeAlive))
-	
+	Global.mainMenuMusicTime=0.0
 	for i in range(2):
 		var panel = get_node("Panel/MenuButtons").get_child(i).get_node("SelectedPanel")
 		if(i==0):

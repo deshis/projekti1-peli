@@ -144,7 +144,6 @@ autostart = true
 
 [node name="MeleeEnemyAttack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_ax40b")
-volume_db = -5.0
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="TargetRefreshTimer" to="." method="_on_timer_timeout"]
