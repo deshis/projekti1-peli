@@ -26,12 +26,13 @@ func _process(_delta):
 			selectedIndex+=1
 		_highlight(selectedIndex)
 	if(Input.is_action_just_pressed("accept")):
+		Global.mainMenuMusicTime=get_node("Music").get_playback_position()
 		if(selectedIndex==0): #start game
 			get_tree().change_scene_to_file("res://main.tscn")
 		elif(selectedIndex==1): #controls
 			pass
 		elif(selectedIndex==2): #credits
-			pass
+			get_tree().change_scene_to_file("res://credits.tscn")
 		elif(selectedIndex==3): #settings
 			pass
 		elif(selectedIndex==4): #quit

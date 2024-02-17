@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxpakgmjehhap"]
+[gd_scene load_steps=7 format=3 uid="uid://bxpakgmjehhap"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_70ilq"]
 [ext_resource type="AudioStream" uid="uid://bhee00epgkb5" path="res://sound/sfx/UI_SELECT.mp3" id="2_w8rs3"]
 [ext_resource type="AudioStream" uid="uid://cchel4b1kevov" path="res://sound/music/Desert Mayhem.mp3" id="3_bmtmp"]
+[ext_resource type="Script" path="res://mainMenuMusic.gd" id="4_kf4pl"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_wwxiy"]
 
@@ -216,5 +217,5 @@ bus = &"SFX"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bmtmp")
-autoplay = true
 bus = &"Music"
+script = ExtResource("4_kf4pl")

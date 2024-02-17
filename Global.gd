@@ -1,3 +1,5 @@
 extends Node
 
-var timeAlive
+var timeAlive = 0
+var controller = true
+var mainMenuMusicTime = 0.0
