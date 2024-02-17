@@ -34,11 +34,10 @@ func _process(_delta):
 		elif(selectedIndex==2): #credits
 			get_tree().change_scene_to_file("res://credits.tscn")
 		elif(selectedIndex==3): #settings
-			pass
+			get_tree().change_scene_to_file("res://settings.tscn")
 		elif(selectedIndex==4): #quit
 			get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 			get_tree().quit()
-
 
 func _highlight(index):
 	soundEffect.play()
