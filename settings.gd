@@ -33,7 +33,8 @@ func _process(_delta):
 			selectedIndex+=1
 		_highlight(selectedIndex)
 	
-	if(Input.is_action_just_pressed("ui_accept") and selectedIndex==1):
+	if(Input.is_action_just_pressed("accept") and selectedIndex==1):
+		print("trying fullscren")
 		get_node("VBoxContainer/FullScreen/CheckButton").button_pressed=!get_node("VBoxContainer/FullScreen/CheckButton").button_pressed
 		if(get_node("VBoxContainer/FullScreen/CheckButton").button_pressed):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
