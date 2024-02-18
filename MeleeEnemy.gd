@@ -36,6 +36,8 @@ var damageOverTime = false
 @onready var deathExplosion = preload("res://explosion.tscn")
 @onready var attackSound = get_node("MeleeEnemyAttack")
 
+var dying = false
+
 func _ready():
 	if(budget):
 		SPEED=SPEED+SPEED*budget/50
@@ -118,7 +120,7 @@ func _attack():
 
 func _on_cooldown_timer_timeout():
 	cooldownActive = false
-	animationPlaying=false
+	animationPlaying = false
 
 func _update_target(): 
 	await Engine.get_main_loop().process_frame
@@ -131,11 +133,11 @@ func _on_enemy_hurt_box_body_entered(body):
 		if(body.heal):
 			get_node("/root/Main/Player").heal(dmg/5.0)
 		if(body.aoe):
-			dmg=dmg/2.0
 			var instance = aoe.instantiate()
 			instance.position=global_position
 			instance.set_damage(dmg)
 			get_tree().current_scene.call_deferred("add_child", instance)
+			dmg=0
 		if(body.dot):
 			_damage_over_time()
 		if(body._get_type()=="projectile"): #dont delete lasers or aoe
@@ -158,6 +160,11 @@ func _take_damage(dmg):
 	currentHealth-=dmg
 	healthBar.value = currentHealth
 	if(currentHealth<=0):
+		_die()
+		
+func _die():
+	if(!dying):
+		dying=true
 		if(rng.randf_range(0, 1)<=itemDropChance):
 			var itemInstance = item.instantiate()
 			itemInstance.position=global_position

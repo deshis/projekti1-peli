@@ -45,6 +45,7 @@ var damageOverTime = false
 @onready var deathExplosion = preload("res://explosion.tscn")
 @onready var attackSound = get_node("RangedEnemyAttack")
 
+var dying = false
 
 func _ready():
 	if(budget):
@@ -212,6 +213,11 @@ func _take_damage(dmg):
 	currentHealth-=dmg
 	healthBar.value = currentHealth
 	if(currentHealth<=0):
+		_die()
+		
+func _die():
+	if(!dying):
+		dying=true
 		if(rng.randf_range(0, 1)<=itemDropChance):
 			var itemInstance = item.instantiate()
 			itemInstance.position=global_position
