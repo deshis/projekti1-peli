@@ -88,7 +88,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0174533
 script = ExtResource("1_moxgo")
 SPEED = 350.0
-threshold = 100
+threshold = 75
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
@@ -101,8 +101,7 @@ frame_progress = 1.0
 shape = SubResource("CapsuleShape2D_08l3f")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 100.0
-target_desired_distance = 100.0
+target_desired_distance = 20.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 16.0
