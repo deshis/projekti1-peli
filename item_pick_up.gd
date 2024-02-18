@@ -13,7 +13,7 @@ func _ready():
 	get_child(1).set_texture(load("res://sprites/"+mode[0]+".png"))
 
 func _on_body_entered(_body):
-	if(!hasBeenPickedUp):
+	if(!hasBeenPickedUp&&!hud.isInventoryOpen):
 		hud._open_inventory(self)
 
 func _get_mode():
