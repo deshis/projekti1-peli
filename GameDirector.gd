@@ -19,7 +19,7 @@ var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawnTimer.start(rng.randf_range(0, minSpawnTime))
+	spawnTimer.start(rng.randf_range(0, 5))
 
 
 #The difficulty level increases the director's budget, amount of enemies spawned and the bias of randomly generated modes
@@ -33,7 +33,7 @@ func _get_bias():
 
 
 func _on_money_timer_timeout():
-	credits+=difficultyLevel/2.0
+	credits+=difficultyLevel
 
 
 func _on_spawn_timer_timeout():
@@ -44,7 +44,7 @@ func _on_spawn_timer_timeout():
 	
 	#try to find a valid spawn location off screen up to 3 times. if a valid location is not found, spawn on top of player
 	for i in 3:
-		spawnLocation = global_position+Vector2(rng.randf_range(-1,1), rng.randf_range(-1,1)).normalized()*screen_size.x/4
+		spawnLocation = global_position+Vector2(rng.randf_range(-1,1), rng.randf_range(-1,1)).normalized()*screen_size.x/2
 		var spawnTile = tileMap.get_cell_tile_data(0, tileMap.local_to_map(spawnLocation))
 		if(spawnTile):
 			if(spawnTile.get_collision_polygons_count(0)==0):
@@ -64,11 +64,11 @@ func _on_spawn_timer_timeout():
 	
 	#make mode drops more likely at start of game
 	if(difficultyLevel<=2):
-		chance=0.3
+		chance=0.5
 	elif(difficultyLevel<=4):
-		chance=0.15
+		chance=0.3
 	else:
-		chance=0.05
+		chance=0.15
 
 	while(credits>=1):
 		if(rng.randi_range(0,1)==1): #spawn melee enemy
