@@ -227,8 +227,6 @@ theme_override_constants/margin_bottom = 0
 [node name="MainMenuPrompt" type="RichTextLabel" parent="Panel/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 24
-text = "bingbong
-Controller is recommended"
 fit_content = true
 scroll_active = false
 script = ExtResource("2_6mm1y")

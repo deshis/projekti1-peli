@@ -5,7 +5,6 @@ extends TileMap
 @export var obstacleChance = 0.025
 
 @onready var dirtNoise = FastNoiseLite.new()
-@onready var mudNoise = FastNoiseLite.new()
 @onready var sandNoise = FastNoiseLite.new()
 @onready var grassNoise = FastNoiseLite.new()
 
@@ -18,7 +17,6 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	await Engine.get_main_loop().process_frame
 	dirtNoise.seed=randi()
-	mudNoise.seed=randi()
 	sandNoise.seed=randi()
 	grassNoise.seed=randi()
 	hud.visible=false

@@ -19,22 +19,20 @@ var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawnTimer.start(rng.randf_range(0, 5))
+	spawnTimer.start(rng.randf_range(2, 5))
 
 
-#The difficulty level increases the director's budget, amount of enemies spawned and the bias of randomly generated modes
+#The difficulty level increases the director's budget, 
+#amount of enemies spawned and the bias of randomly generated modes
 #The game will get harder with time but the player also gets more powerful.
 func _on_difficulty_timer_timeout():
 	difficultyLevel+=1
 
-
 func _get_bias():
 	return difficultyLevel/20.0
 
-
 func _on_money_timer_timeout():
 	credits+=difficultyLevel
-
 
 func _on_spawn_timer_timeout():
 	var spawnWaitTime = rng.randf_range(minSpawnTime, maxSpawnTime)
