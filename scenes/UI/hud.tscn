@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://kwnhyg72qcxf"]
+
+[ext_resource type="Script" path="res://scripts/UI/hud.gd" id="1_tlojx"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_tlojx")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 12.0
+offset_top = 683.0
+offset_right = 170.0
+offset_bottom = 731.0

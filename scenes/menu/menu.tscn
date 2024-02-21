@@ -1,0 +1,243 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxpakgmjehhap"]
+
+[ext_resource type="Script" path="res://scripts/menu/menu.gd" id="1_70ilq"]
+[ext_resource type="Script" path="res://scripts/menu/MainMenuPrompt.gd" id="2_6mm1y"]
+[ext_resource type="AudioStream" uid="uid://bhee00epgkb5" path="res://sound/sfx/UI_SELECT.mp3" id="2_w8rs3"]
+[ext_resource type="AudioStream" uid="uid://cchel4b1kevov" path="res://sound/music/Desert Mayhem.mp3" id="3_bmtmp"]
+[ext_resource type="Script" path="res://scripts/audio/mainMenuMusic.gd" id="4_kf4pl"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wwxiy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k6i0y"]
+bg_color = Color(0.909804, 0.909804, 0.909804, 1)
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_70ilq")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuButtons" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -352.0
+offset_right = 175.0
+offset_bottom = 352.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MenuButtons/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center] START GAME [/center]"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_wwxiy")]
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="Panel/MenuButtons/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="SelectedPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k6i0y")
+
+[node name="BackgroundPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer"]
+z_index = -2
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MenuButtons/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center] CONTROLS [/center]"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_wwxiy")]
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="Panel/MenuButtons/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="SelectedPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer2"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k6i0y")
+
+[node name="BackgroundPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer2"]
+z_index = -2
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Panel/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MenuButtons/MarginContainer3"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center] CREDITS [/center]"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_wwxiy")]
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="Panel/MenuButtons/MarginContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="SelectedPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer3"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k6i0y")
+
+[node name="BackgroundPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer3"]
+z_index = -2
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="Panel/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MenuButtons/MarginContainer4"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center] SETTINGS [/center]"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_wwxiy")]
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="Panel/MenuButtons/MarginContainer4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="SelectedPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer4"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k6i0y")
+
+[node name="BackgroundPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer4"]
+z_index = -2
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="Panel/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MenuButtons/MarginContainer5"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center] QUIT GAME [/center]"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_wwxiy")]
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="Panel/MenuButtons/MarginContainer5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="SelectedPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer5"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k6i0y")
+
+[node name="BackgroundPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer5"]
+z_index = -2
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="MainMenuPrompt" type="RichTextLabel" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+fit_content = true
+scroll_active = false
+script = ExtResource("2_6mm1y")
+
+[node name="UI_select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_w8rs3")
+bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bmtmp")
+bus = &"Music"
+script = ExtResource("4_kf4pl")
+
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]

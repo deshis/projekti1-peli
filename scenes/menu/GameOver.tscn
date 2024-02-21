@@ -1,0 +1,161 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfihm8i6mo6vj"]
+
+[ext_resource type="Script" path="res://scripts/menu/GameOver.gd" id="1_wtv0l"]
+[ext_resource type="AudioStream" uid="uid://dibb7r8vwxnm0" path="res://sound/sfx/PLAYER_DEATH.mp3" id="2_4qrpq"]
+[ext_resource type="AudioStream" uid="uid://bhee00epgkb5" path="res://sound/sfx/UI_SELECT.mp3" id="3_bs5rv"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wwxiy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elvh5"]
+bg_color = Color(0.909804, 0.909804, 0.909804, 1)
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wtv0l")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="YOUDIEDmargin" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.0
+offset_right = 396.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 50
+
+[node name="YOUDIED" type="RichTextLabel" parent="Panel/YOUDIEDmargin"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+text = "[center]YOU DIED"
+fit_content = true
+
+[node name="timeMargin" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -393.0
+offset_top = -44.0
+offset_right = 393.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/timeMargin"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center] You were alive for"
+fit_content = true
+
+[node name="MenuButtons" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -352.0
+offset_right = 175.0
+offset_bottom = 456.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MenuButtons/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center] Restart [/center]"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_wwxiy")]
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="Panel/MenuButtons/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="SelectedPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_elvh5")
+
+[node name="BackgroundPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer"]
+z_index = -2
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MenuButtons/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center] Main Menu [/center]"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_wwxiy")]
+
+[node name="ButtonPromptMargin" type="MarginContainer" parent="Panel/MenuButtons/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="SelectedPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer2"]
+visible = false
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_elvh5")
+
+[node name="BackgroundPanel" type="Panel" parent="Panel/MenuButtons/MarginContainer2"]
+z_index = -2
+layout_mode = 2
+
+[node name="PlayerDeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4qrpq")
+volume_db = -2.0
+autoplay = true
+
+[node name="UI_select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bs5rv")
+bus = &"SFX"

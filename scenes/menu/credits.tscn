@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://bml2mw2apfjjl"]
+
+[ext_resource type="Script" path="res://scripts/menu/ExitButtonPrompt.gd" id="1_masto"]
+[ext_resource type="Script" path="res://scripts/menu/backToMenu.gd" id="1_xwwwf"]
+[ext_resource type="AudioStream" uid="uid://cchel4b1kevov" path="res://sound/music/Desert Mayhem.mp3" id="2_32d8k"]
+[ext_resource type="Script" path="res://scripts/audio/mainMenuMusic.gd" id="3_t52nb"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xwwwf")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center] CREDITS"
+fit_content = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 25
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "ASSETS:
+Xelu's Free Controllers & Keyboard Prompts https://thoseawesomeguys.com/prompts/
+Kenney Particle Pack https://godotengine.org/asset-library/asset/784
+
+Sound Effects:
+Breaker-1.wav by Deathscyp https://freesound.org/people/Deathscyp/sounds/404049/
+Boom Explosion by BennettFilmTeacher https://freesound.org/people/BennettFilmTeacher/sounds/523783/
+Points_Tick1 by BaggoNotes https://freesound.org/people/BaggoNotes/sounds/721513/
+Points_Tick2 by BaggoNotes https://freesound.org/people/BaggoNotes/sounds/721514/
+Player_Shoot1 by BaggoNotes https://freesound.org/people/BaggoNotes/sounds/720118/
+Laser Classic Shot 1 by bubaproducer https://freesound.org/people/bubaproducer/sounds/151014/
+Computer Breaking Sound by thehorriblejoke https://freesound.org/people/thehorriblejoke/sounds/505751/
+Shiny Object of Value.wav by MATRIXXX_ https://freesound.org/people/MATRIXXX_/sounds/659677/
+laser.wav by BMacZero https://freesound.org/people/BMacZero/sounds/164102/
+Heal Up by Rickplayer https://freesound.org/people/Rickplayer/sounds/530488/
+Improvement/Healing Chime by Raclure https://freesound.org/people/Raclure/sounds/483608/
+shoot by Leszek_Szary https://freesound.org/people/Leszek_Szary/sounds/146730/
+Basic Melee Swing / Miss / Whoosh by SypherZent https://freesound.org/people/SypherZent/sounds/420668/
+Damage sound effect by Raclure https://freesound.org/people/Raclure/sounds/458867/
+Bike tire on dirt road.wav by SpliceSound https://freesound.org/people/SpliceSound/sounds/218301/
+Servo_3_Panera.wav sinmente0987 https://freesound.org/people/sinmente0987/sounds/160719/
+as_ab_os_door_servo.wav by Clusman https://freesound.org/people/Clusman/sounds/543058/
+
+Music by Eric Matyas www.soundimage.org"
+fit_content = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ExitButtonPrompt" type="RichTextLabel" parent="VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("1_masto")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_32d8k")
+bus = &"Music"
+script = ExtResource("3_t52nb")
+
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]

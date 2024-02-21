@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Scrapyard Survival"
-run/main_scene="res://menu.tscn"
+run/main_scene="res://scenes/menu/menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://sprites/icon.svg"
 
 [autoload]
 
-Global="*res://Global.gd"
+Global="*res://scripts/misc/Global.gd"
 
 [display]
 

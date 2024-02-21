@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlars8q5fgn3c"]
+
+[ext_resource type="Script" path="res://scripts/enemy/aoe.gd" id="1_pg7n2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4gvk"]
+radius = 75.0
+
+[node name="Aoe" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 8
+gravity_scale = 0.0
+script = ExtResource("1_pg7n2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g4gvk")
